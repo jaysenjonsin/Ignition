@@ -56,8 +56,11 @@ const userController = {
         throw new Error('please enter all fields');
       }
       const user = await User.findOne({ username });
+      console.log(password);
+      // console.log('crypt password', user.password);
       //compare req.body.password and password from db
-      if (user && bcrypt.compare(password, user.password)) {
+      //dont forget to await the hash
+      if (user && await bcrypt.compare(password, user.password)) {
         res.status(200).json({
           _id: user.id,
           role: user.role,

@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const connectDB = require('./config/db');
 //Make sure to put dotenv.config before anything that requires process.env. initially had issue because i tried putting connectDB line before dotenv.config
@@ -11,13 +12,13 @@ app.use(express.json());
 //since our req.body will only contain strings, we will use extended false. if req.body were to contain other datatypes, we would use : true
 app.use(express.urlencoded({ extended: false }));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use('/build', express.static(path.join(__dirname, '../dist')));
-}
-
 app.use('/api/users', userRouter);
 app.use('/api/tasks', taskRouter);
 
+//if prod, static serve bundle folder
+if (process.env.NODE_ENV === 'production') {
+  app.use('/dist', express.static(path.join(__dirname, '../dist')));
+}
 //catch all route handler
 app.use((_, res) => res.status(404).send('page not found'));
 

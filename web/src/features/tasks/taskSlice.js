@@ -7,7 +7,6 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
-  status: 'pending',
 };
 
 export const createTask = createAsyncThunk(
