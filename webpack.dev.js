@@ -8,6 +8,7 @@ module.exports = merge(common, {
     port: 3005,
     hot: true,
     host: 'localhost',
+    //this is needed for react-router to work
     historyApiFallback: true,
     proxy: {
       '/api/*': {

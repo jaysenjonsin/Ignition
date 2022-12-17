@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
@@ -49,20 +49,31 @@ const Register = () => {
   const onSubmit = (e) => {
     //prevent default behavior of page reload on submission
     e.preventDefault();
-    //our backend doesnt account for password mismatching, so we account for it here. backend already accounts for 'user already exist' and 'please add all required fields'.
-    if (password !== password2) {
-      toast.error('Passwords do not match.');
+
+    if (
+      role === 'doctor' ||
+      role === 'patient' ||
+      role === 'PA' ||
+      role === 'NP' ||
+      role === 'MA' ||
+      role === 'test'
+    ) {
+      if (password !== password2) {
+        toast.error('Passwords do not match.');
+      } else {
+        //make sure to send all data needed on the dispatch. initially wrote only name, email, password and kept getting error 'add all required fields'
+        const userInfo = {
+          role,
+          name,
+          email,
+          username,
+          password,
+        };
+        //note: if user does not input all required fields: toast error will show 'please add all required fields'. this logic is set up in the backend.
+        dispatch(register(userInfo));
+      }
     } else {
-      //make sure to send all data needed on the dispatch. initially wrote only name, email, password and kept getting error 'add all required fields'
-      const userInfo = {
-        role,
-        name,
-        email,
-        username,
-        password,
-      };
-      //note: if user does not input all required fields: toast error will show 'please add all required fields'. this logic is set up in the backend.
-      dispatch(register(userInfo));
+      toast.error('please choose a correct role.');
     }
   };
 
