@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, reset } from '../features/tasks/taskSlice';
-
+import Task from './Task';
 const TaskContainer = () => {
   const dispatch = useDispatch();
   const { tasks, isLoading, isError, message } = useSelector(
@@ -16,7 +16,16 @@ const TaskContainer = () => {
       dispatch(reset());
     };
   }, [dispatch]);
-  return <div>TaskContainer</div>;
+  return (
+    <>
+      <div>TaskContainer</div>
+      <div className='tasks'>
+        {tasks.map((task) => (
+          <Task key={task._id} task={task} />
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default TaskContainer;
