@@ -1,8 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './web/src/index.js',
-  //allows 'import dashboard from ./dashboard' instead of 'import dashboard from ./dashboard.jsx'
+  //allows 'import dashboard from ./dashboard' instead of 'import dashboard from ./dashboard.jsx, etc.'
   resolve: {
     extensions: [
       '.js',
@@ -35,9 +36,13 @@ module.exports = {
         use: ['style-loader', 'css-loader'], // remember order matters --> goes from end to front
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|ico)$/i,
         exclude: /node_modules/,
         loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/'
+        }
       },
     ],
   },

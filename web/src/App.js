@@ -1,27 +1,28 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-// import Login from './pages/Login';
-// import LoginReset from './pages/PasswordRest';
-// import Register from './pages/Register';
-// import { ToastContainer } from 'react-toastify';
+import Login from './pages/Login';
+import LoginReset from './pages/PasswordReset';
+import Register from './pages/Register';
+import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-// import TaskForm from './pages/TaskForm';
-// import TaskSuccess from './pages/TaskSuccess';
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
+import TaskForm from './pages/TaskForm';
+import TaskSuccess from './pages/TaskSuccess';
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Dashboard />} />
-          {/* <Route path='/login/reset' element={<LoginReset />} />
+          <Route path='/login/reset' element={<LoginReset />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/taskform' element={<TaskForm />} />
-          <Route path='/taskSuccess' element={<TaskSuccess />} /> */}
+          <Route path='/taskSuccess' element={<TaskSuccess />} />
         </Routes>
       </BrowserRouter>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
     </>
   );
 };

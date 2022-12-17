@@ -1,3 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-button-color: #ff7a00;
+  --white: #ffffff;
+  --gray: #363636;
+}
+/*set width of side scrollbar*/
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+/*set color of side scrollbar*/
+body::-webkit-scrollbar-track {
+  background: black;
+}
+
+.logo {
+  position: relative;
+  text-align: center;
+  /* background-color: red; */
+  margin-bottom: -6rem;
+}
+
+/*    Login.jsx    */
+
+.loginContainer {
+  /* background-image: url('./images/marek-piwnicki-DgdJ_0us5SE-unsplash.jpg'); */
+  background-image: url('./images/ignitionDarkerBackground.jpeg');
+  /*background will auto repeat to fill size if we don't do this*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  height: 100vh;
+  /* this is making everything darker, not just the picture
+  filter:brightness(80%); */
+}
+
+.loginHeaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 6rem;
+  /*unintended, but this is moving everything down --> best to avoid heights*/
+  height: 50vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+}
+
+.form {
+  /*how big the forms and button are. otherwise, they take up the entire div*/
+  width: 40%;
+  /*centering the forms*/
+  margin-inline: auto;
+  border-radius: 8px;
+}
+
+.form-group {
+  /*makes form groups spaced slightly farther apart*/
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: #ffffff;
+  /* background-color: red; */
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+}
+
+/* .form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+} */
+
+.btn {
+  margin-top: 1.5rem;
+  padding: 16px;
+  /*centering the button --> same as margin: 0 auto*/
+  margin-inline: auto;
+  /* border: 1px solid #000; */
+  border-radius: 8px;
+  background: var(--main-button-color);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 15px rgba(61, 0, 0, 0.17);
+  backdrop-filter: blur(11px);
+  /* Note: backdrop-filter has minimal browser support */
+}
+
+/* .btn svg {
+  margin-right: 8px;
+} */
+
+/* .btn-reverse {
+  background: #fff;
+  color: #000;
+} */
+
+.btn-block {
+  width: 75%;
+  margin-bottom: 20px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+}
+
+.btn:hover {
+  transform: scale(0.99);
+}
+
+.links {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  gap: 1rem;
+  font-family: 'Inter';
+  font-style: normal;
+}
+
+/* router Link colors. under the hood, react router links are just anchor tags --> see if just using Link works */
+a {
+  color: var(--main-button-color);
+}
+
+/*    Register.jsx   */
+.registerHeaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 3rem;
+  /*unintended, but this is moving everything down --> best to avoid heights */
+  height: 23vh;
+  /* border: solid red; */
+  position: relative;
+  font-family: 'Inter';
+  font-style: normal;
+  text-align: center;
+}
+
+.registerHeader {
+  font-size: 2rem;
+  margin-top: 9rem;
+}
+
+/*    Dashboard.jsx    */
+
+.dashboardContainer {
+  /* background-image: url('./images/marek-piwnicki-DgdJ_0us5SE-unsplash.jpg'); */
+  background-image: url('./images/ignitionDarkerBackground.jpeg');
+  /* background will auto repeat to fill size if we don't do this */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  height: 100vh;
+  /* this is making everything darker, not just the picture
+  filter:brightness(80%); */
+}
+
+/*main dashboard content pushed right to account for navbar*/
+.main {
+  margin-left: 5rem;
+  /* padding: 1rem; */
+}
+
+/*   Navbar.jsx    */
+
+/* <nav /> */
+.navbar {
+  width: 5rem;
+  /* header takes 6.5% */
+  height: 93.5vh;
+  /*navbar stays in same place no matter where user scrolls on screen.. this also prevents main content from being put underneath it*/
+  position: fixed;
+  background-color: var(--gray);
+}
+
+/* <ul /> */
+.navbar-nav {
+  list-style: none;
+  /* padding: 0;
+   margin:0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*without adding this, the settings wouldn't go to bottom. makes sure ul takes up entirety of the parent*/
+  height: 100%;
+}
+
+/* <li /> */
+.nav-item {
+  /*makes sure each list item takes up 100 percent of its space --> allowing the background color of plus button to work as intended*/
+  width: 100%;
+}
+
+.nav-item:last-child {
+  /*makes top margin as big as possible, setting this item to bottom*/
+  margin-top: auto;
+}
+
+/* <Link /> for navbar */
+.nav-link {
+  display: flex;
+  align-items: center;
+  /*sets proper height of each link, also spaces them out. an alternative to this would be using gap property on nav-item*/
+  height: 5rem;
+}
+
+.nav-link img {
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.header {
+  height: 6.5%;
+  background-color: var(--white);
+}
+
+/* used for positioning on page y axis */
+.taskGeneratorMain {
+  padding: 6em;
+}
+
+/* .taskGeneratorContainer {
+   width: 100%; 
+   border: 10px solid red; 
+} */
+
+.taskGeneratorContent {
+  color: var(--white);
+  text-align: center;
+}
+
 h1 {
-  color: red;
+  margin: 0;
+  /* adding space between h1 and p */
+  padding: 0.5em;
+  font-family: 'Inter';
+  font-style: normal;
+  /* font-weight: 700; */
+  font-size: 48px;
+  line-height: 22px;
+}
+
+p {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* Spinner.jsx  */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
