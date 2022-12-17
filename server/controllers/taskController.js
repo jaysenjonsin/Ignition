@@ -25,10 +25,10 @@ const taskController = {
         res.status(400);
         throw new Error('patient does not exist.');
       }
-
+      const senderData = await User.findById(req.user.id, { name: 1 });
       const task = await Task.create({
         //have access to req.user through protect middleware
-        sender: req.user.id,
+        sender: senderData,
         //make sure request sends id of receiver
         receiver,
         patient,

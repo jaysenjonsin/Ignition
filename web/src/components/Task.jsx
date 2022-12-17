@@ -7,7 +7,10 @@ const Task = ({ task }) => {
   // pharmacy: '',
   return (
     <>
-      <div>{task.receiver}</div>
+      <div>
+        sender: {task.sender.name} receiver: {task.receiver} medication:
+        {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
+      </div>
     </>
   );
 };
