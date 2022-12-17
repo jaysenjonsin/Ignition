@@ -38,11 +38,17 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|ico)$/i,
         exclude: /node_modules/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'images/',
-        },
+        //NOTE: background image set in css wasn't working when using file loader, but every other image was working. with using type: 'asset/resource' instead, everything is loading.
+        type: 'asset/resource',
+        // use: [
+        //   {
+        //     loader: 'file-loader',
+        //     // options: {
+        //     //   name: '[name].[ext]',
+        //     //   outputPath: 'images/',
+        //     // },
+        //   },
+        // ],
       },
     ],
   },
