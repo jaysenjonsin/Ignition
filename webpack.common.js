@@ -2,7 +2,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './web/src/index.js',
-
+  //allows 'import dashboard from ./dashboard' instead of 'import dashboard from ./dashboard.jsx'
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx',
+      '.png',
+      '.jpg',
+      '.jpeg',
+      '.gif',
+      '.css',
+      '.scss',
+    ],
+  },
   module: {
     rules: [
       {
@@ -24,17 +36,14 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
+        exclude: /node_modules/,
+        loader: 'file-loader',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'web/public/index.html',
+      template: './web/public/index.html',
       filename: 'index.html',
     }),
   ],

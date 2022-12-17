@@ -1,6 +1,6 @@
 import React from 'react';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Dashboard from './pages/Dashboard';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 // import Login from './pages/Login';
 // import LoginReset from './pages/PasswordRest';
 // import Register from './pages/Register';
@@ -11,18 +11,17 @@ import React from 'react';
 const App = () => {
   return (
     <>
-      hello world
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Dashboard />} />
-          <Route path='/login/reset' element={<LoginReset />} />
+          {/* <Route path='/login/reset' element={<LoginReset />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/taskform' element={<TaskForm />} />
-          <Route path='/taskSuccess' element={<TaskSuccess />} />
+          <Route path='/taskSuccess' element={<TaskSuccess />} /> */}
         </Routes>
       </BrowserRouter>
-      <ToastContainer /> */}
+      {/* <ToastContainer /> */}
     </>
   );
 };
