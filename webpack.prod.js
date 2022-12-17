@@ -7,7 +7,7 @@ const common = require('./webpack.common.js');
 const production = merge(common, {
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'dist'),
   },
   mode: 'production',
   optimization: {
