@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './web/public/index.js',
+  entry: './web/src/index.js',
 
   module: {
     rules: [
@@ -20,14 +20,14 @@ module.exports = {
       {
         test: /\.(s?c|sa)ss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'], // remember order matters --> goes from end to front
+        use: ['style-loader', 'css-loader'], // remember order matters --> goes from end to front
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
-      filename: 'index.html',
+      template: 'web/public/index.html',
+      filename: 'index.html'
     }),
   ],
 };
