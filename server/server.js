@@ -10,10 +10,13 @@ connectDB();
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../dist')));
 }
-// serve index.html on the route '/'
-app.get('/', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../web/public/index.html'))
-);
+
+const taskRouter = require('./routes/taskRoutes');
+app.use(express.json());
+//since our req.body will only contain strings, we will use extended false. if req.body were to contain other datatypes, we would use : true
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/api/tasks', taskRouter);
 
 app.listen(port, (_, __) => {
   console.log(`listening on port ${port}`);
