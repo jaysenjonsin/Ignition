@@ -28,6 +28,7 @@ const taskController = {
       const senderData = await User.findById(req.user.id, { name: 1 });
       const task = await Task.create({
         //have access to req.user through protect middleware
+        //pasted waht is being sent back on the bottom
         sender: senderData,
         //make sure request sends id of receiver
         receiver,
@@ -138,6 +139,24 @@ const taskController = {
 };
 
 module.exports = taskController;
+
+//what is sent in getTasks: 
+
+// {
+//   "sender": {
+//       "_id": "6392f08acb342622cf7abfb2",
+//       "name": "tester"
+//   },
+//   "receiver": "6392f0b29f31cc6b9c7a3305",
+//   "patient": "6392f3a9406dad264d9229ad",
+//   "medication": "pathpathpath",
+//   "pharmacy": "Walgreens",
+//   "_id": "639e44693e98d9eb50c00378",
+//   "createdAt": "2022-12-17T22:36:25.189Z",
+//   "updatedAt": "2022-12-17T22:36:25.189Z",
+//   "__v": 0
+// }
+
 
 //test documents:
 

@@ -42,6 +42,23 @@ export const getTasks = createAsyncThunk(
   }
 );
 
+export const deleteTask = createAsyncThunk(
+  'tasks/delete',
+  async (id, thunkAPI) => {
+    try {
+      //this route is protected, so we need to get our token. We can do this using thunkAPI getState method, which allows us to get our state. so we can get our auth state, which contains a user, which contains our token.
+      const token = thunkAPI.getState().auth.user.token;
+      return await taskService.deleteTask(id, token);
+    } catch (err) {
+      const message =
+        (err.response && err.response.data & err.response.data.message) ||
+        err.message ||
+        err.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
@@ -76,6 +93,21 @@ export const taskSlice = createSlice({
         state.isSuccess = true;
         //payload will contain all goals we receive
         state.tasks = action.payload;
+      })
+      .addCase(deleteTask.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+             //this is taking out our deleted task from the UI right away. if we didnt filter it, we would have to reload to see the update. so we filter it out directly once the deletetask is fulfilled!!
+       //remember the payload.id is the id of the task we delete. we got that from our server!! look at the response.
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.tasks = state.tasks.filter((el) => el._id !== action.payload.id);
       });
   },
 });
