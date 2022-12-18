@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import userModel from '../../../server/models/userModel';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { createTask } from '../features/tasks/taskSlice';
@@ -23,17 +22,21 @@ const TaskForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createTask({ formData }));
-
-    //reset form
-    setFormData({
-      receiver: '',
-      patient: '',
-      medication: '',
-      pharmacy: '',
-      reason: '',
-    });
-    navigate('/taskSuccess');
+    //this still isn't accountng for if user is not in database, fix later
+    if (!receiver || !medication || !patient || !pharmacy) {
+      toast.error('please enter all fields.');
+    } else {
+      dispatch(createTask({ formData }));
+      //reset form
+      setFormData({
+        receiver: '',
+        patient: '',
+        medication: '',
+        pharmacy: '',
+        reason: '',
+      });
+      navigate('/taskSuccess');
+    }
   };
 
   const onChange = (e) => {
@@ -101,7 +104,7 @@ const TaskForm = () => {
                 className='form-control'
                 id='reason'
                 name='reason'
-                value = {reason}
+                value={reason}
                 placeholder='Reason for request'
                 onChange={onChange}
               />

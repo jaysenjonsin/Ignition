@@ -21,15 +21,16 @@ const Login = () => {
   );
 
   useEffect(() => {
+    //if error with login, send message. ex username or password is incorrect. logic is set up in backend
     if (isError) {
       toast.error(message);
     }
-    //if registration is successful or if user is already logged in, navigate to the dashboard
+    //if login is successful or if user is already logged in, navigate to the dashboard
     if (isSuccess || user) {
       navigate('/');
     }
 
-    //after isError or isSuccess, we want to reset the auth state. so we will dispatch the reset action
+    //after isError or isSuccess, we want to reset the auth state (isLoading, isSuccess, isError). so we will dispatch the reset action
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
