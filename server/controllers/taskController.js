@@ -3,9 +3,10 @@ const User = require('../models/userModel');
 
 const taskController = {
   createTask: async (req, res, next) => {
-    const { receiver, patient, medication, pharmacy } = req.body;
+    const { receiver, patient, medication, pharmacy, reason } = req.body;
 
     try {
+      //reason is not required
       if (!receiver || !patient || !medication || !pharmacy) {
         res.status(400);
         throw new Error('Please enter all required fields');
@@ -35,6 +36,7 @@ const taskController = {
         patient,
         medication,
         pharmacy,
+        reason,
       });
 
       res.status(200).json(task);
@@ -47,10 +49,18 @@ const taskController = {
   getTasks: async (req, res, next) => {
     try {
       //instead of just getting the task itself (remember, task doesn't have the actual user's name, it only has the id), this is replacing the ._id with the name value in the user model!!!!
-      const tasks = await Task.find()
+      const tasks = await Task.find({
+        $or: [
+          { sender: req.user.id },
+          { receiver: req.user.id },
+          { patient: req.user.id },
+        ],
+      })
         .populate('sender')
         .populate('receiver')
         .populate('patient');
+
+      // console.log('tasks===>', tasks);
       const formattedTasks = tasks.map((task) => {
         return {
           _id: task._id,
@@ -59,6 +69,7 @@ const taskController = {
           patient: task.patient.name,
           medication: task.medication,
           pharmacy: task.pharmacy,
+          reason: task.reason,
           createdAt: task.createdAt,
           updatedAt: task.updatedAt,
           __v: task.__v,
@@ -72,7 +83,8 @@ const taskController = {
   },
 
   updateTask: async (req, res, next) => {
-    const { sender, receiver, patient, medication, pharmacy } = req.body;
+    const { sender, receiver, patient, medication, pharmacy, reason } =
+      req.body;
 
     try {
       const task = await Task.findById(req.params.id);
@@ -128,9 +140,9 @@ const taskController = {
   deleteTask: async (req, res, next) => {
     try {
       const task = await Task.findById(req.params.id);
-      console.log(task);
-      console.log('req.user.id ====>', req.user.id);
-      console.log('req.params.id ===>', req.params.id);
+      // console.log(task);
+      // console.log('req.user.id ====>', req.user.id);
+      // console.log('req.params.id ===>', req.params.id);
       if (!task) {
         res.status(400);
         throw new Error('task not found');

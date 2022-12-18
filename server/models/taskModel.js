@@ -28,6 +28,15 @@ const taskSchema = new Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      default: 'pending',
+    },
+    reason: {
+      type: String,
+      //if no reason sent, it just has default ''. all other logic will not have reason as a required field
+      default: '',
+    },
   },
   { timestamps: true }
 );

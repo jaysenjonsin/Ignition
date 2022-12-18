@@ -17,7 +17,7 @@ const TaskForm = () => {
     pharmacy: '',
   });
 
-  const { receiver, medication, patient, pharmacy } = formData;
+  const { receiver, medication, patient, pharmacy, reason } = formData;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ const TaskForm = () => {
       patient: '',
       medication: '',
       pharmacy: '',
+      reason: '',
     });
     navigate('/taskSuccess');
   };
@@ -94,6 +95,28 @@ const TaskForm = () => {
                 onChange={onChange}
               />
             </div>
+            <div className='form-group'>
+              <input
+                type='text'
+                className='form-control'
+                id='reason'
+                name='reason'
+                value = {reason}
+                placeholder='Reason for request'
+                onChange={onChange}
+              />
+            </div>
+            {/* <div className='form-group'>
+              <input
+                type='text'
+                className='form-control'
+                id='reason'
+                name='reason'
+                value={reason}
+                placeholder='reason'
+                onChange={onChange}
+              />
+            </div> */}
 
             <div className='form-group'>
               {/*adding two classes to our button */}

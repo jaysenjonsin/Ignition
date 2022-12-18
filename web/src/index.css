@@ -187,7 +187,7 @@ a {
   filter:brightness(80%); */
 }
 
-/*main dashboard content pushed right to account for navbar*/
+/*main dashboard content pushed right to account for the navbar*/
 .main {
   margin-left: 5rem;
   /* padding: 1rem; */
@@ -224,7 +224,7 @@ a {
 }
 
 .nav-item:last-child {
-  /*makes top margin as big as possible, setting this item to bottom*/
+  /*makes top margin as big as possible, setting this item (the setting picture) to bottom*/
   margin-top: auto;
 }
 
