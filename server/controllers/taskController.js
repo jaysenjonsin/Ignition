@@ -25,11 +25,11 @@ const taskController = {
         res.status(400);
         throw new Error('patient does not exist.');
       }
-      const senderData = await User.findById(req.user.id, { name: 1 });
+      // const senderData = await User.findById(req.user.id, { name: 1 });
       const task = await Task.create({
         //have access to req.user through protect middleware
         //pasted waht is being sent back on the bottom
-        sender: senderData,
+        sender: req.user.id,
         //make sure request sends id of receiver
         receiver,
         patient,
@@ -46,13 +46,25 @@ const taskController = {
 
   getTasks: async (req, res, next) => {
     try {
-      //note: .find() returns ALL matching documents. so we will get all tasks that have a sender value of req.user.id
-      const sentTasks = await Task.find({ sender: req.user.id });
-      const receivedTasks = await Task.find({ receiver: req.user.id });
-      //not sure if will need patient Tasks
-      const patientTasks = await Task.find({ patient: req.user.id });
-      const allTasks = sentTasks.concat(receivedTasks).concat(patientTasks);
-      res.status(200).json(allTasks);
+      //instead of just getting the task itself (remember, task doesn't have the actual user's name, it only has the id), this is replacing the ._id with the name value in the user model!!!!
+      const tasks = await Task.find()
+        .populate('sender')
+        .populate('receiver')
+        .populate('patient');
+      const formattedTasks = tasks.map((task) => {
+        return {
+          _id: task._id,
+          sender: task.sender.name,
+          receiver: task.receiver.name,
+          patient: task.patient.name,
+          medication: task.medication,
+          pharmacy: task.pharmacy,
+          createdAt: task.createdAt,
+          updatedAt: task.updatedAt,
+          __v: task.__v,
+        };
+      });
+      res.status(200).json(formattedTasks);
     } catch (err) {
       console.log(err);
       return next(err);
@@ -116,14 +128,19 @@ const taskController = {
   deleteTask: async (req, res, next) => {
     try {
       const task = await Task.findById(req.params.id);
+      console.log(task);
+      console.log('req.user.id ====>', req.user.id);
+      console.log('req.params.id ===>', req.params.id);
       if (!task) {
         res.status(400);
         throw new Error('task not found');
       }
+      console.log('task.sender.toString ===>', task.sender.toString());
       //ENSURE USER IS AUTHORIZED: only sender and receiver can delete task
       if (
         task.sender.toString() == req.user.id ||
-        task.receiver.toString() == req.user.id
+        task.receiver.toString() == req.user.id ||
+        task.patient.toString() == req.user.id
       ) {
         await task.remove();
         res.status(200).json({ id: req.params.id });
@@ -140,23 +157,32 @@ const taskController = {
 
 module.exports = taskController;
 
-//what is sent in getTasks: 
+//what is sent in getTasks:
 
-// {
-//   "sender": {
-//       "_id": "6392f08acb342622cf7abfb2",
-//       "name": "tester"
+// [
+//   {
+//       "_id": "639e6aaa520f3517bace23ea",
+//       "sender": "639e6a24c3627535e08bd5de",
+//       "receiver": "639e69f8a21c9b603a5e0b32",
+//       "patient": "639e69f8a21c9b603a5e0b32",
+//       "medication": "meds",
+//       "pharmacy": "CVS",
+//       "createdAt": "2022-12-18T01:19:38.964Z",
+//       "updatedAt": "2022-12-18T01:19:38.964Z",
+//       "__v": 0
 //   },
-//   "receiver": "6392f0b29f31cc6b9c7a3305",
-//   "patient": "6392f3a9406dad264d9229ad",
-//   "medication": "pathpathpath",
-//   "pharmacy": "Walgreens",
-//   "_id": "639e44693e98d9eb50c00378",
-//   "createdAt": "2022-12-17T22:36:25.189Z",
-//   "updatedAt": "2022-12-17T22:36:25.189Z",
-//   "__v": 0
-// }
-
+// {
+//         "_id": "639e6aaa520f3517bace23ea",
+//         "sender": "639e6a24c3627535e08bd5de",
+//         "receiver": "639e69f8a21c9b603a5e0b32",
+//         "patient": "639e69f8a21c9b603a5e0b32",
+//         "medication": "meds",
+//         "pharmacy": "CVS",
+//         "createdAt": "2022-12-18T01:19:38.964Z",
+//         "updatedAt": "2022-12-18T01:19:38.964Z",
+//         "__v": 0
+//     }
+// ]
 
 //test documents:
 

@@ -11,7 +11,7 @@ const Task = ({ task }) => {
   console.log('task -->', task);
   return (
     <div className='task'>
-      sender: {task.sender.name} receiver: {task.receiver} medication:
+      id: {task._id} sender: {task.sender} receiver: {task.receiver} medication:
       {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
       <button onClick={() => dispatch(deleteTask(task._id))}>X</button>
     </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import userModel from '../../../server/models/userModel';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { createTask } from '../features/tasks/taskSlice';
@@ -26,8 +28,8 @@ const TaskForm = () => {
     //reset form
     setFormData({
       receiver: '',
-      medication: '',
       patient: '',
+      medication: '',
       pharmacy: '',
     });
     navigate('/taskSuccess');

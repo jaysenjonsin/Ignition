@@ -1,9 +1,61 @@
-import React from 'react'
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import taskSuccessimg from '../images/taskSuccess';
+import check from '../images/check';
+import Header from '../components/Header';
+import Navbar from '../components/Navbar';
 const TaskSuccess = () => {
   return (
-    <div>TaskSuccess</div>
-  )
-}
+    <>
+      <Header style={{ height: '6.5vh' }} />
+      <Navbar />
+      <div className='taskSuccess' style={{ marginRight: '5rem' }}>
+        <div
+          className='taskSuccessContainer'
+          style={{ width: '50%', maxWidth: '1000px', margin: '0 auto' }}
+        >
+          <div className='content'>
+            <div
+              style={{
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                fontSize: '4rem',
+              }}
+            >
+              Congratulations! <img src={check} alt='complete' />
+            </div>
+            <div
+              style={{
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '2rem',
+                color: '#363636',
+              }}
+            >
+              Your task has been sent.
+            </div>
 
-export default TaskSuccess
+            <img src={taskSuccessimg} alt='successful task' />
+            <Link
+              to='/'
+              style={{
+                background: '#127CFC',
+                boxShadow: '0px 4px 11px rgba(0, 0, 0, 0.03)',
+                backdropFilter: 'blur(40px)',
+                padding: '18px 16px',
+                borderRadius: '.5rem',
+                color: 'var(--white)',
+              }}
+            >
+              Done
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default TaskSuccess;
