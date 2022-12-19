@@ -69,6 +69,12 @@ body::-webkit-scrollbar-track {
   margin-bottom: 5px;
 }
 
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+}
+
 .form-group input,
 .form-group textarea,
 .form-group select {

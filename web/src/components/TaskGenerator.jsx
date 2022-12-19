@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import taskGeneratorTab from '../images/taskGeneratorTab.png';
 const TaskGenerator = () => {
   return (
     <div className='taskGeneratorMain'>
@@ -7,13 +8,23 @@ const TaskGenerator = () => {
         <div className='taskGeneratorContent'>
           <h1>Create new task</h1>
           <p>Fill out these fields to get started.</p>
-          <section
-            className='form'
-          >
-            <form style={{ display: 'flex', backgroundColor: 'white' }}>
+          <section className='form'>
+            <form
+              style={{
+                display: 'flex',
+                // flexWrap: 'wrap',
+                padding: '50px 0',
+                backgroundColor: 'white',
+                borderRadius: '1rem',
+                width: '100%',
+              }}
+            >
               <input type='text' name='' id='' placeholder='Request type' />
               <input type='text' name='' id='' placeholder='Recipient' />
-              <div className='taskButtonContainer' style={{ display: 'flex' }}>
+              <div
+                className='taskButtonContainer'
+                style={{ display: 'flex', color: '#5C5F62' }}
+              >
                 Lets get started!
                 <Link to='/taskForm' className='generateTaskButton'>
                   <button style={{ visibility: 'hidden' }}></button>
