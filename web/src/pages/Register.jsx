@@ -162,7 +162,7 @@ const Register = () => {
             <div className='form-group'>
               {/*adding two classes to our button */}
               <button type='submit' className='btn btn-block'>
-                Login
+                Sign up
               </button>
             </div>
           </form>
