@@ -25,7 +25,13 @@ const Header = () => {
         <img
           src={logo}
           alt='logo'
-          style={{ width: '1.3rem', marginTop: '10px', float: 'left' }}
+          style={{
+            width: '1.3rem',
+            height: '2rem',
+            marginTop: '5px',
+            marginLeft: '1rem',
+            float: 'left',
+          }}
         />
         <div
           style={{
