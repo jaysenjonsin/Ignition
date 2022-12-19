@@ -99,7 +99,7 @@ const Register = () => {
                 id='role'
                 name='role'
                 value={role}
-                placeholder=' Role: doctor, MA, NP, PA, or patient'
+                placeholder=' Role: MD, DO, MA, NP, PA, or patient'
                 onChange={onChange}
               />
             </div>

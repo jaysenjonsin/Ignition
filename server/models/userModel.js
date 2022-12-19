@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     role: {
       type: String,
-      enum: ['test', 'doctor', 'MA', 'NP', 'PA', 'patient'],
+      enum: ['test', 'MD', 'DO', 'doctor', 'MA', 'NP', 'PA', 'patient'],
       message: 'invalid role',
       required: true,
     },
