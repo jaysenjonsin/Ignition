@@ -47,10 +47,21 @@ const Header = () => {
         >
           <img
             src={avatar}
-            style={{ width: '2rem', marginTop: '10px', float: 'left' }}
+            style={{
+              width: '2rem',
+              marginTop: '10px',
+              verticalAlign: 'middle',
+            }}
             alt='avatar'
           />
-          <div style={{ marginTop: 'auto', paddingLeft: '.5em' }}>
+          <div
+            style={{
+              // marginTop: 'auto',
+              paddingTop: '1em',
+              paddingLeft: '.5em',
+              display: 'inline-block',
+            }}
+          >
             {user?.name}, {user?.role}
           </div>
           <button onClick={onLogout}>logout</button>
