@@ -20,11 +20,42 @@ const Header = () => {
   };
   return (
     <section className='header'>
-      {/* if user is undefined, we don't render anything. if it is defined, render their name --> option chaining. rememeber in user, we have access to everything sent from backend*/}
-      <img src={logo} alt='logo' style={{ width: '1.3rem', marginTop: '10px' }} />
-      <img src={avatar} style={{ width: '2rem' }} alt='avatar' />
-      hello hello hello name: {user?.name}, {user?.role}
-      <button onClick={onLogout}>logout</button>
+      {/* if user is undefined, we don't render anything. if it is defined, render their name*/}
+      <div className='headerContent' style={{ display: 'flex' }}>
+        <img
+          src={logo}
+          alt='logo'
+          style={{ width: '1.3rem', marginTop: '10px', float: 'left' }}
+        />
+        <div
+          style={{
+            fontFamily: 'inter',
+            marginTop: 'auto',
+            paddingLeft: '.5em',
+          }}
+        >
+          ignition
+        </div>
+        <div
+          className='userInfo'
+          style={{
+            marginLeft: 'auto',
+            marginBottom: 'auto',
+            fontFamily: 'inter',
+            display: 'flex',
+          }}
+        >
+          <img
+            src={avatar}
+            style={{ width: '2rem', marginTop: '10px', float: 'left' }}
+            alt='avatar'
+          />
+          <div style={{ marginTop: 'auto', paddingLeft: '.5em' }}>
+            {user?.name}, {user?.role}
+          </div>
+          <button onClick={onLogout}>logout</button>
+        </div>
+      </div>
     </section>
   );
 };
