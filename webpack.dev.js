@@ -11,7 +11,7 @@ module.exports = merge(common, {
     //this is needed for react-router to work
     historyApiFallback: true,
     proxy: {
-      '/api/*': {
+      '/api/**': {
         //server is running on 5000
         target: 'http://localhost:5000',
         secure: false,

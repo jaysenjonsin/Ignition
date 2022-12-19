@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
-import { createTask } from '../features/tasks/taskSlice';
+import { createTask, reset as taskReset } from '../features/tasks/taskSlice';
+import { reset as authReset } from '../features/auth/authSlice';
 
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
@@ -14,36 +15,66 @@ const TaskForm = () => {
     medication: '',
     patient: '',
     pharmacy: '',
+    reason: '',
   });
 
   const { receiver, medication, patient, pharmacy, reason } = formData;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    //this still isn't accountng for if user is not in database, fix later
-    if (!receiver || !medication || !patient || !pharmacy) {
-      toast.error('please enter all fields.');
-    } else {
-      dispatch(createTask({ formData }));
-      //reset form
-      setFormData({
-        receiver: '',
-        patient: '',
-        medication: '',
-        pharmacy: '',
-        reason: '',
-      });
+  const {
+    isError: authError,
+    message: authMessage,
+    isSuccess: authSuccess,
+  } = useSelector((state) => state.auth);
+  const {
+    isError: taskError,
+    message: taskMessage,
+    isSuccess: taskSuccess,
+  } = useSelector((state) => state.tasks);
+
+  useEffect(() => {
+    if (authError || taskError) {
+      toast.error(authMessage ? authMessage : taskMessage);
+    }
+    if (authSuccess && taskSuccess) {
       navigate('/taskSuccess');
     }
-  };
+    dispatch(authReset());
+    dispatch(taskReset());
+  }, [
+    authError,
+    taskError,
+    authSuccess,
+    taskSuccess,
+    taskMessage,
+    authMessage,
+    navigate,
+    dispatch,
+  ]);
 
   const onChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    //this still isn't accountng for if user is not in database, fix later -> probably add useEffect and if (isError) for tasks, like the Login page. probably jsut delete the if statement
+    console.log(formData);
+    dispatch(createTask({ formData }));
+    //reset form
+    // setFormData({
+    //   receiver: '',
+    //   patient: '',
+    //   medication: '',
+    //   pharmacy: '',
+    //   reason: '',
+    // });
+    // navigate('/taskSuccess');
   };
   return (
     <div style={{ height: '100vh' }}>
