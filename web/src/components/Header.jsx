@@ -29,7 +29,10 @@ const Header = () => {
         />
         <div
           style={{
+            color: '#323232',
+            fontSize: '1.3rem',
             fontFamily: 'inter',
+            fontWeight: '600',
             marginTop: 'auto',
             paddingLeft: '.5em',
           }}
@@ -43,6 +46,7 @@ const Header = () => {
             marginBottom: 'auto',
             fontFamily: 'inter',
             display: 'flex',
+            color: '#202223',
           }}
         >
           <img

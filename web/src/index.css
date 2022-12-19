@@ -92,9 +92,9 @@ body::-webkit-scrollbar-track {
 
 .btn {
   margin-top: 1.5rem;
-  padding: 16px;
   /*centering the button --> same as margin: 0 auto*/
   margin-inline: auto;
+  padding: 16px;
   /* border: 1px solid #000; */
   border-radius: 8px;
   background: var(--main-button-color);
@@ -134,6 +134,26 @@ body::-webkit-scrollbar-track {
 }
 
 .btn:hover {
+  transform: scale(0.99);
+}
+
+.generateTaskButton {
+  font-family: 'inter';
+  text-decoration: none;
+  background-color: #848484;
+  padding: 16px;
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  box-shadow: 0px 4px 15px rgba(61, 0, 0, 0.17);
+  backdrop-filter: blur(11px);
+}
+
+.generateTaskButton:hover {
   transform: scale(0.99);
 }
 

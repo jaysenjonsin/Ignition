@@ -141,13 +141,21 @@ const TaskForm = () => {
 
             <div className='form-group'>
               {/*adding two classes to our button */}
-              <button type='submit' className='btn btn-block'>
+              <button
+                type='submit'
+                className='btn btn-block'
+                style={{ backgroundColor: '#127CFC' }}
+              >
                 Save draft
               </button>
             </div>
             <div className='form-group'>
               {/*adding two classes to our button */}
-              <button type='submit' className='btn btn-block'>
+              <button
+                type='submit'
+                className='btn btn-block'
+                style={{ backgroundColor: '#127CFC' }}
+              >
                 Send to provider
               </button>
             </div>

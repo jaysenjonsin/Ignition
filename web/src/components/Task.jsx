@@ -13,6 +13,7 @@ const Task = ({ task }) => {
     <div className='task'>
       id: {task._id} sender: {task.sender} receiver: {task.receiver} medication:
       {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
+      reason:{task.reason}
       <button onClick={() => dispatch(deleteTask(task._id))}>X</button>
     </div>
   );
