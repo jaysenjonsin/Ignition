@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { reset, logout } from '../features/auth/authSlice';
-
+import avatar from '../images/avatar.png';
+import logo from '../images/logo.png';
 const Header = () => {
   //we only need our user from our auth state!!!
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const Header = () => {
   return (
     <section className='header'>
       {/* if user is undefined, we don't render anything. if it is defined, render their name --> option chaining. rememeber in user, we have access to everything sent from backend*/}
+      <img src={logo} alt='logo' style={{ width: '1.3rem', marginTop: '10px' }} />
+      <img src={avatar} style={{ width: '2rem' }} alt='avatar' />
       hello hello hello name: {user?.name}, {user?.role}
       <button onClick={onLogout}>logout</button>
     </section>
