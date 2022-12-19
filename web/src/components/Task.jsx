@@ -8,7 +8,7 @@ const Task = ({ task }) => {
   // medication: '',
   // patient: '',
   // pharmacy: '',
-  console.log('task -->', task);
+  // console.log('task -->', task);
   return (
     <div className='task'>
       id: {task._id} sender: {task.sender} receiver: {task.receiver} medication:

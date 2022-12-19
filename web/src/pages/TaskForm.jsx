@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { createTask, reset as taskReset } from '../features/tasks/taskSlice';
-import { reset as authReset } from '../features/auth/authSlice';
 
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
@@ -24,35 +23,24 @@ const TaskForm = () => {
   const navigate = useNavigate();
 
   const {
-    isError: authError,
-    message: authMessage,
-    isSuccess: authSuccess,
-  } = useSelector((state) => state.auth);
-  const {
     isError: taskError,
     message: taskMessage,
     isSuccess: taskSuccess,
   } = useSelector((state) => state.tasks);
 
   useEffect(() => {
-    if (authError || taskError) {
-      toast.error(authMessage ? authMessage : taskMessage);
+    if (taskError) {
+      console.log('taskerror --->', taskError);
+      toast.error(taskMessage);
     }
-    if (authSuccess && taskSuccess) {
-      navigate('/taskSuccess');
-    }
-    dispatch(authReset());
-    dispatch(taskReset());
-  }, [
-    authError,
-    taskError,
-    authSuccess,
-    taskSuccess,
-    taskMessage,
-    authMessage,
-    navigate,
-    dispatch,
-  ]);
+    // if (taskSuccess) {
+    //   navigate('/taskSuccess');
+    // }
+
+    return () => {
+      dispatch(taskReset());
+    };
+  }, [taskError, taskSuccess, taskMessage, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -63,9 +51,9 @@ const TaskForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log('FORM DATA -->', formData);
     //this still isn't accountng for if user is not in database, fix later -> probably add useEffect and if (isError) for tasks, like the Login page. probably jsut delete the if statement
-    console.log(formData);
-    dispatch(createTask({ formData }));
+    dispatch(createTask(formData));
     //reset form
     // setFormData({
     //   receiver: '',
@@ -74,7 +62,6 @@ const TaskForm = () => {
     //   pharmacy: '',
     //   reason: '',
     // });
-    // navigate('/taskSuccess');
   };
   return (
     <div style={{ height: '100vh' }}>

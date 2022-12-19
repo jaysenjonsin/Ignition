@@ -4,6 +4,8 @@ import taskSuccessimg from '../images/taskSuccess';
 import check from '../images/check';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
+import { useDispatch } from 'react-redux';
+import { reset } from '../features/tasks/taskSlice';
 const TaskSuccess = () => {
   return (
     <>
@@ -38,6 +40,7 @@ const TaskSuccess = () => {
             </div>
 
             <img src={taskSuccessimg} alt='successful task' />
+
             <Link
               to='/'
               style={{
