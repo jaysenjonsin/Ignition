@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'inter';
 }
 
 :root {
@@ -354,12 +355,17 @@ p {
   }
 }
 
+.information {
+  display: flex;
+  background-color: white;
+  width: 100%;
+}
+
 /*   task container   */
 
 .taskContainer {
-  background-color: white;
+  border-right: 1px solid #BABFC3;
 }
 
-.tasks{
-  
+.tasks {
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, reset } from '../features/tasks/taskSlice';
+import Details from './Details';
 import Task from './Task';
 const TaskContainer = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,29 @@ const TaskContainer = () => {
   }, [dispatch]);
   return (
     <>
-      <div className='taskContainer'>
-        Recent Tasks
-        <div className='tasks'>
-          tasks
-          {tasks.map((task) => (
-            <Task key={task._id} task={task} />
-          ))}
+      <div className='information'>
+        <div className='taskContainer' style={{ width: '65%' }}>
+          <h2
+            style={{
+              fontFamily: 'inter',
+              fontWeight: '700',
+              fontSize: '2rem',
+              color: '#363636',
+            }}
+          >
+            Recent Tasks
+          </h2>
+          {tasks.length > 0 ? (
+            <div className='tasks'>
+              {tasks.map((task) => (
+                <Task key={task._id} task={task} />
+              ))}
+            </div>
+          ) : (
+            <div style={{ marginTop: '2em' }}>You have no tasks.</div>
+          )}
         </div>
+        <Details task={tasks} />
       </div>
     </>
   );
