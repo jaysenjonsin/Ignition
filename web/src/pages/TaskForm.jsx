@@ -22,19 +22,23 @@ const TaskForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isError, message, isSuccess } = useSelector((state) => state.tasks);
+  const { isError, message /*isSuccess*/ } = useSelector(
+    (state) => state.tasks
+  );
 
   useEffect(() => {
     if (isError) {
       // console.log('taskerror --->', taskError);
+      // console.log('MESSAGE ==>', message)
       toast.error(message);
     }
-    // if (isSuccess) {
-    //   navigate('/taskSuccess');
-    // }
 
     dispatch(reset());
-  }, [isError, isSuccess, message, navigate, dispatch]);
+
+    // return () => {
+    //   dispatch(reset());
+    // };
+  }, [isError, message, dispatch]);
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -43,23 +47,25 @@ const TaskForm = () => {
     }));
   };
 
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log('FORM DATA -->', formData);
+
+  //   try {
+  //      dispatch(createTask(formData));
+  //     console.log(message);
+  //     navigate('/taskSuccess');
+  //   } catch (error) {
+  //     // handle the error
+  //   }
+  // };
+
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log('FORM DATA -->', formData);
-    if (isError) {
-      toast.error(message);
-    } else {
-      dispatch(createTask(formData));
-      navigate('/taskSuccess');
-    }
-    //reset form
-    // setFormData({
-    //   receiver: '',
-    //   patient: '',
-    //   medication: '',
-    //   pharmacy: '',
-    //   reason: '',
-    // });
+
+    dispatch(createTask(formData));
+    navigate('/taskSuccess');
   };
   return (
     <div style={{ height: '100vh' }}>

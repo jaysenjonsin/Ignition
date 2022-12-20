@@ -70,15 +70,15 @@ export const taskSlice = createSlice({
       .addCase(createTask.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createTask.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
       .addCase(createTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.tasks.push(action.payload);
+      })
+      .addCase(createTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
       .addCase(getTasks.pending, (state) => {
         state.isLoading = true;
@@ -102,8 +102,8 @@ export const taskSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-             //this is taking out our deleted task from the UI right away. if we didnt filter it, we would have to reload to see the update. so we filter it out directly once the deletetask is fulfilled!!
-       //remember the payload.id is the id of the task we delete. we got that from our server!! look at the response.
+      //this is taking out our deleted task from the UI right away. if we didnt filter it, we would have to reload to see the update. so we filter it out directly once the deletetask is fulfilled!!
+      //remember the payload.id is the id of the task we delete. we got that from our server!! look at the response.
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;

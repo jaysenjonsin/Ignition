@@ -50,6 +50,8 @@ const Register = () => {
     e.preventDefault();
 
     if (
+      role === 'MD' ||
+      role === 'DO' ||
       role === 'doctor' ||
       role === 'patient' ||
       role === 'PA' ||
