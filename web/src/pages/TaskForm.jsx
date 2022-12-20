@@ -22,16 +22,12 @@ const TaskForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    isError: taskError,
-    message: taskMessage,
-    isSuccess: taskSuccess,
-  } = useSelector((state) => state.tasks);
+  const { isError, message, isSuccess } = useSelector((state) => state.tasks);
 
   useEffect(() => {
-    if (taskError) {
-      console.log('taskerror --->', taskError);
-      toast.error(taskMessage);
+    if (isError) {
+      // console.log('taskerror --->', taskError);
+      toast.error(message);
     }
     // if (taskSuccess) {
     //   navigate('/taskSuccess');
@@ -40,7 +36,7 @@ const TaskForm = () => {
     return () => {
       dispatch(taskReset());
     };
-  }, [taskError, taskSuccess, taskMessage, navigate, dispatch]);
+  }, [isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -52,7 +48,6 @@ const TaskForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('FORM DATA -->', formData);
-    //this still isn't accountng for if user is not in database, fix later -> probably add useEffect and if (isError) for tasks, like the Login page. probably jsut delete the if statement
     dispatch(createTask(formData));
     //reset form
     // setFormData({
