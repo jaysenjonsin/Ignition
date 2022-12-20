@@ -214,7 +214,7 @@ a {
   /* background will auto repeat to fill size if we don't do this */
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center bottom;
+  background-position: center -20rem;
   height: 100vh;
   /* this is making everything darker, not just the picture
   filter:brightness(80%); */
@@ -281,7 +281,7 @@ a {
 
 /* used for positioning on page y axis */
 .taskGeneratorMain {
-  padding: 6em;
+  padding: 4em;
 }
 
 /* .taskGeneratorContainer {
@@ -384,9 +384,16 @@ p {
 .detailsCard {
   border: 0.5px solid #babfc3;
   border-radius: 0.5rem;
+  min-width: 200px;
+  display: flex;
+}
+
+.detailsContent {
+  padding-left: 0.8rem;
 }
 
 .detailsContent h2 {
   color: #363636;
   font-size: 1.1rem;
+  /* padding-left: 0.8rem; */
 }

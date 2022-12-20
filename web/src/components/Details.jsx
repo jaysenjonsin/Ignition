@@ -8,23 +8,26 @@ const Details = ({ selectedTask, tasks }) => {
   return (
     <section className='details'>
       <div className='detailsContainer'>
+        <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>Details</h1>
         <div className='detailsContent'>
-          <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>Details</h1>
           <h2>Patient</h2>
           <div className='detailsCard'>
-            <img src={avatar} style={{ width: '3rem' }} alt='avatar' />
+            <img src={avatar} style={{ width: '4rem' }} alt='avatar' />
             {tasks.length === 0 ? '' : selectedTask?.patient}
           </div>
-          <h2>Medication</h2>
+          <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
           <div className='detailsCard'>
-            <img src={medication} style={{ width: '3rem' }} alt='medication' />
+            <img src={medication} style={{ width: '4rem' }} alt='medication' />
             {tasks.length === 0 ? '' : selectedTask?.medication}
           </div>
-          <h2>Sent to</h2>
+          <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
+          {/* <div className='prepare' style={{ display: 'flex' }}> */}
           <div className='detailsCard'>
-            <img src={pharmacy} style={{ width: '3.5rem' }} alt='pharmacy' />
+            <img src={pharmacy} style={{ width: '4rem' }} alt='pharmacy' />
             {tasks.length === 0 ? '' : selectedTask?.pharmacy}
           </div>
+          {/* <div>hello</div> */}
+          {/* </div> */}
         </div>
       </div>
     </section>
