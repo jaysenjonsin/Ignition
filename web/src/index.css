@@ -368,7 +368,8 @@ p {
 }
 
 .tasks {
-  padding: 20px 20px 20px 32px;
+  /* padding: 20px 20px 20px 32px; */
+  padding: 10px 0;
 }
 
 .task {
