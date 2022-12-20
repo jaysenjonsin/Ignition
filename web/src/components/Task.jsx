@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../features/tasks/taskSlice';
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
-  // receiver: '',
-  // medication: '',
-  // patient: '',
-  // pharmacy: '',
-  // console.log('task -->', task);
+
+  const [patientInfo, setPatientInfo] = useState(null);
+
+  const onClick = (e) => {
+    setPatientInfo(task);
+    console.log(patientInfo);
+  };
   return (
-    <div className='task'>
+    <div className='task' onClick={onClick}>
       {new Date(task.createdAt).toLocaleString('en-US', {
         month: 'numeric',
         day: 'numeric',
