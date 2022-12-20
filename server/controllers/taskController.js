@@ -12,17 +12,19 @@ const taskController = {
         throw new Error('Please enter all required fields');
       }
 
-      //confirm receiver exists in DB
-      const receiverExists = await User.findById(receiver);
+      //confirm receiver exists in DB --> model.find returns AN ARRAY. we only want the first user that appears, so grab the 0th element
+      const receiverExists = await User.find({ name: receiver });
+      console.log('RECEIVER ===>', receiverExists[0]); //<-- to send id back, make sure to do receiverExists[0]
+      console.log('SENDER ==>', req.user);
       //for some reason in post man if you put a wrong receiver it isnt throwing correct error --> same for patient
-      if (!receiverExists) {
+      if (!receiverExists[0]) {
         res.status(400);
         throw new Error('Recipient does not exist.');
       }
 
-      //confirm patient exists in DB
-      const patientExists = await User.findById(patient);
-      if (!patientExists) {
+      //confirm patient exists in DB --> model.find returns an ARRAY!!!!
+      const patientExists = await User.find({ name: patient });
+      if (!patientExists[0]) {
         res.status(400);
         throw new Error('patient does not exist.');
       }
@@ -32,8 +34,8 @@ const taskController = {
         //pasted waht is being sent back on the bottom
         sender: req.user.id,
         //make sure request sends id of receiver
-        receiver,
-        patient,
+        receiver: receiverExists[0].id,
+        patient: patientExists[0].id,
         medication,
         pharmacy,
         reason,

@@ -19,8 +19,9 @@ const TaskContainer = () => {
   return (
     <>
       <div>TaskContainer</div>
-      <div className='tasks'>
-        tasks{tasks.map((task) => (
+      <div className='tasks' style={{ color: 'white' }}>
+        tasks
+        {tasks.map((task) => (
           <Task key={task._id} task={task} />
         ))}
       </div>
