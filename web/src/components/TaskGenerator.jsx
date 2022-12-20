@@ -8,7 +8,7 @@ const TaskGenerator = () => {
         <div className='taskGeneratorContent'>
           <h1>Create new task</h1>
           <p>Fill out these fields to get started.</p>
-          <img src={taskGeneratorTab} style={{ padding: '2rem 0' }} alt='' />
+          {/* <img src={taskGeneratorTab} style={{ padding: '2rem 0' }} alt='' /> */}
           {/*MODIFY THE SECTION STYLE HERE, look at .form */}
           <section >
             <form

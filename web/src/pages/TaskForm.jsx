@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
-import { createTask, reset as taskReset } from '../features/tasks/taskSlice';
+import { createTask, reset } from '../features/tasks/taskSlice';
 
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
@@ -29,13 +29,11 @@ const TaskForm = () => {
       // console.log('taskerror --->', taskError);
       toast.error(message);
     }
-    // if (taskSuccess) {
+    // if (isSuccess) {
     //   navigate('/taskSuccess');
     // }
 
-    return () => {
-      dispatch(taskReset());
-    };
+    dispatch(reset());
   }, [isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
@@ -47,8 +45,13 @@ const TaskForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('FORM DATA -->', formData);
-    dispatch(createTask(formData));
+    // console.log('FORM DATA -->', formData);
+    if (isError) {
+      toast.error(message);
+    } else {
+      dispatch(createTask(formData));
+      navigate('/taskSuccess');
+    }
     //reset form
     // setFormData({
     //   receiver: '',
