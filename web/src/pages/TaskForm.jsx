@@ -166,7 +166,7 @@ const TaskForm = () => {
               </button>
             </div>
           </form>
-          <Link to='/'>back to dash</Link>
+          <Link to='/'>back to dashboard</Link>
         </section>
       </section>
     </div>

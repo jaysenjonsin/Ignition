@@ -18,12 +18,14 @@ const TaskContainer = () => {
   }, [dispatch]);
   return (
     <>
-      <div>TaskContainer</div>
-      <div className='tasks' style={{ color: 'white' }}>
-        tasks
-        {tasks.map((task) => (
-          <Task key={task._id} task={task} />
-        ))}
+      <div className='taskContainer'>
+        Recent Tasks
+        <div className='tasks'>
+          tasks
+          {tasks.map((task) => (
+            <Task key={task._id} task={task} />
+          ))}
+        </div>
       </div>
     </>
   );

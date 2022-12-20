@@ -353,3 +353,13 @@ p {
     transform: rotate(360deg);
   }
 }
+
+/*   task container   */
+
+.taskContainer {
+  background-color: white;
+}
+
+.tasks{
+  
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { reset, logout } from '../features/auth/authSlice';
 import avatar from '../images/avatar.png';
 import logo from '../images/logo.png';
@@ -22,17 +22,20 @@ const Header = () => {
     <section className='header'>
       {/* if user is undefined, we don't render anything. if it is defined, render their name*/}
       <div className='headerContent' style={{ display: 'flex' }}>
-        <img
-          src={logo}
-          alt='logo'
-          style={{
-            width: '1.3rem',
-            height: '2rem',
-            marginTop: '5px',
-            marginLeft: '1rem',
-            float: 'left',
-          }}
-        />
+        <Link to='/'>
+          <img
+            src={logo}
+            alt='logo'
+            style={{
+              width: '1.3rem',
+              height: '2rem',
+              marginTop: '5px',
+              marginLeft: '1rem',
+              float: 'left',
+            }}
+          />
+        </Link>
+        {/* causing text to go p: <Link to='/' style={{ textDecoration: 'none' }}> */}
         <div
           style={{
             color: '#323232',
@@ -45,6 +48,7 @@ const Header = () => {
         >
           ignition
         </div>
+        {/* </Link> */}
         <div
           className='userInfo'
           style={{
