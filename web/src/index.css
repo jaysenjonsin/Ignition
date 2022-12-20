@@ -364,8 +364,20 @@ p {
 /*   task container   */
 
 .taskContainer {
-  border-right: 1px solid #BABFC3;
+  border-right: 1px solid #babfc3;
 }
 
 .tasks {
+}
+
+/*  Details */
+
+.detailsCard {
+  border: 0.5px solid #babfc3;
+  border-radius: 0.5rem;
+}
+
+.detailsContent h2 {
+  color: #363636;
+  font-size: 1.1rem;
 }

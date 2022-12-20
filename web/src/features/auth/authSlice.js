@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-
+import avatar from '../../images/avatar.png';
 //get user from local storage --> note: local storage stores strings, so we have to parse it. we set our user in localStorage in authService
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -10,6 +10,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
+  avatar: avatar,
 };
 
 //REGISTER USER USING REGISTER FROM SERVICE FILE

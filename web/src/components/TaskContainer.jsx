@@ -48,7 +48,7 @@ const TaskContainer = () => {
             <div style={{ marginTop: '2em' }}>You have no tasks.</div>
           )}
         </div>
-        <Details task={selectedTask} />
+        <Details selectedTask={selectedTask} />
       </div>
     </>
   );
