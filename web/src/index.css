@@ -143,6 +143,10 @@ body::-webkit-scrollbar-track {
   transform: scale(0.99);
 }
 
+.taskGeneratorTab:hover {
+  transform: scale(0.99);
+}
+
 .generateTaskButton {
   font-family: 'inter';
   text-decoration: none;
@@ -287,6 +291,10 @@ a {
 .taskGeneratorContent {
   color: var(--white);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {

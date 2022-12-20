@@ -9,8 +9,9 @@ import { createTask, reset } from '../features/tasks/taskSlice';
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
   //we need to type the receivers name, and it gets their id and sends it.
+  const recipient = JSON.parse(localStorage.getItem('recipient'));
   const [formData, setFormData] = useState({
-    receiver: '',
+    receiver: recipient ? recipient : '',
     medication: '',
     patient: '',
     pharmacy: '',
@@ -65,6 +66,7 @@ const TaskForm = () => {
     // console.log('FORM DATA -->', formData);
 
     dispatch(createTask(formData));
+    localStorage.removeItem('recipient');
     navigate('/taskSuccess');
   };
   return (
