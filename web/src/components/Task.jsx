@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../features/tasks/taskSlice';
 
-const Task = ({ task }) => {
+//passing down the setState function as a prop!!
+const Task = ({ task, setSelectedTask }) => {
   const dispatch = useDispatch();
 
-  const [patientInfo, setPatientInfo] = useState(null);
-
-  const onClick = (e) => {
-    setPatientInfo(task);
-    console.log(patientInfo);
+  const setTaskData = (e) => {
+    setSelectedTask(task);
   };
   return (
-    <div className='task' onClick={onClick}>
+    <div className='task' onClick={setTaskData}>
       {new Date(task.createdAt).toLocaleString('en-US', {
         month: 'numeric',
         day: 'numeric',

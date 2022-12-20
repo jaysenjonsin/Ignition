@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, reset } from '../features/tasks/taskSlice';
@@ -9,6 +9,8 @@ const TaskContainer = () => {
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   );
+
+  const [selectedTask, setSelectedTask] = useState(null);
 
   useEffect(() => {
     dispatch(getTasks());
@@ -35,14 +37,18 @@ const TaskContainer = () => {
           {tasks.length > 0 ? (
             <div className='tasks'>
               {tasks.map((task) => (
-                <Task key={task._id} task={task} />
+                <Task
+                  key={task._id}
+                  task={task}
+                  setSelectedTask={setSelectedTask}
+                />
               ))}
             </div>
           ) : (
             <div style={{ marginTop: '2em' }}>You have no tasks.</div>
           )}
         </div>
-        <Details task={tasks} />
+        <Details task={selectedTask} />
       </div>
     </>
   );
