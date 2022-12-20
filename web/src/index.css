@@ -368,6 +368,15 @@ p {
 }
 
 .tasks {
+  padding: 20px 20px 20px 32px;
+}
+
+.task {
+  display: flex;
+}
+
+.task img {
+  cursor: pointer;
 }
 
 /*  Details */

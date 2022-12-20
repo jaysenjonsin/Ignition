@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../features/tasks/taskSlice';
+import deleteButton from '../images/deleteButton.png';
 
 //passing down the setState function as a prop!!
-const Task = ({ task, setSelectedTask }) => {
+const Task = ({ task, selectedTask, setSelectedTask }) => {
   const dispatch = useDispatch();
 
+  const [taskColor, setTaskColor] = useState('white');
   const setTaskData = (e) => {
     setSelectedTask(task);
+    setTaskColor('#E6EFFF');
   };
   return (
-    <div className='task' onClick={setTaskData}>
+    <div
+      className='task'
+      onClick={setTaskData}
+      style={{ backgroundColor: task === selectedTask ? '#E6EFFF' : 'white' }}
+    >
       {new Date(task.createdAt).toLocaleString('en-US', {
         month: 'numeric',
         day: 'numeric',
@@ -20,7 +27,13 @@ const Task = ({ task, setSelectedTask }) => {
       sender: {task.sender} receiver: {task.receiver} medication:
       {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
       reason:{task.reason}
-      <button onClick={() => dispatch(deleteTask(task._id))}>X</button>
+      <div>
+        <img
+          src={deleteButton}
+          alt='delete button'
+          onClick={() => dispatch(deleteTask(task._id))}
+        />
+      </div>
     </div>
   );
 };

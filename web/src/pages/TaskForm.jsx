@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { createTask, reset } from '../features/tasks/taskSlice';
-
+import avatar from '../images/avatar.png';
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
   //we need to type the receivers name, and it gets their id and sends it.
@@ -75,9 +75,12 @@ const TaskForm = () => {
       <hr style={{ marginBottom: '-1px' }} />
       <Navbar />
       <section className='main'>
-        <section className='form'>
+        <section className='form' style={{ marginTop: '100px' }}>
           <form onSubmit={onSubmit}>
-            <div className='form-group'>
+            <div className='form-group' style={{ display: 'flex' }}>
+              {/* <div>
+                <img src={avatar} alt='' />
+              </div> */}
               <input
                 //CHANGE TO DROPDOWN MENU IF THERE IS TIME
                 type='text'

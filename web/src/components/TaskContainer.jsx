@@ -30,6 +30,8 @@ const TaskContainer = () => {
               fontWeight: '700',
               fontSize: '2rem',
               color: '#363636',
+              paddingLeft: '.5em',
+              paddingTop: '.5em',
             }}
           >
             Recent Tasks
@@ -41,6 +43,7 @@ const TaskContainer = () => {
                   key={task._id}
                   task={task}
                   setSelectedTask={setSelectedTask}
+                  selectedTask={selectedTask}
                 />
               ))}
             </div>
@@ -48,7 +51,7 @@ const TaskContainer = () => {
             <div style={{ marginTop: '2em' }}>You have no tasks.</div>
           )}
         </div>
-        <Details selectedTask={selectedTask} />
+        <Details selectedTask={selectedTask} tasks={tasks} />
       </div>
     </>
   );
