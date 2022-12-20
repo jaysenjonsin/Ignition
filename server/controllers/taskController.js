@@ -39,6 +39,7 @@ const taskController = {
         medication,
         pharmacy,
         reason,
+        status,
       });
 
       res.status(200).json(task);
@@ -72,6 +73,7 @@ const taskController = {
           medication: task.medication,
           pharmacy: task.pharmacy,
           reason: task.reason,
+          status: task.status,
           createdAt: task.createdAt,
           updatedAt: task.updatedAt,
           __v: task.__v,

@@ -9,6 +9,7 @@ const Task = ({ task, selectedTask, setSelectedTask }) => {
 
   const setTaskData = (e) => {
     setSelectedTask(task);
+    console.log(selectedTask);
   };
   return (
     <div
@@ -20,7 +21,7 @@ const Task = ({ task, selectedTask, setSelectedTask }) => {
       }}
     >
       <div>
-        <img src={pendingTask} alt='' />
+        <img src={task.status === 'pending' ? pendingTask : ''} alt='' />
       </div>
       {new Date(task.createdAt).toLocaleString('en-US', {
         month: 'numeric',
@@ -44,3 +45,13 @@ const Task = ({ task, selectedTask, setSelectedTask }) => {
 };
 
 export default Task;
+
+/*
+constainer display: flex
+  ul
+   li image
+   li  Task  ->date, patient
+   li  x
+
+  /ul
+ */
