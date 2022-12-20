@@ -7,10 +7,8 @@ import deleteButton from '../images/deleteButton.png';
 const Task = ({ task, selectedTask, setSelectedTask }) => {
   const dispatch = useDispatch();
 
-  const [taskColor, setTaskColor] = useState('white');
   const setTaskData = (e) => {
     setSelectedTask(task);
-    setTaskColor('#E6EFFF');
   };
   return (
     <div
