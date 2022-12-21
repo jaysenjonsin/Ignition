@@ -33,4 +33,5 @@ const protect = async (req, res, next) => {
   }
 };
 
+//exporting as an object just in case we implement more auth middleware in the future
 module.exports = { protect };

@@ -26,7 +26,9 @@ const Details = ({ tasks }) => {
               <>
                 {selectedTask?.medication}
                 <br />
-                {selectedTask === null ? '' : 'Reason for request: ' + selectedTask?.reason}
+                {selectedTask === null
+                  ? ''
+                  : 'Reason for request: ' + selectedTask?.reason}
               </>
             )}
           </div>

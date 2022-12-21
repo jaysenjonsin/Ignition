@@ -133,6 +133,7 @@ const taskController = {
           patient: patientExists[0],
           medication,
           pharmacy,
+          reason,
         });
 
         res.status(200).json({ id: req.params.id });

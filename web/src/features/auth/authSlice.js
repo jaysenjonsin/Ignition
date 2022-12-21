@@ -51,7 +51,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  //any synchronous reducers
+  //main reducers
   reducers: {
     reset: (state) => {
       state.isError = false;
