@@ -121,17 +121,6 @@ const TaskUpdate = () => {
                 onChange={onChange}
               />
             </div>
-            {/* <div className='form-group'>
-              <input
-                type='text'
-                className='form-control'
-                id='reason'
-                name='reason'
-                value={reason}
-                placeholder='reason'
-                onChange={onChange}
-              />
-            </div> */}
 
             <div className='form-group'>
               {/*adding two classes to our button */}

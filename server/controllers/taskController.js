@@ -104,14 +104,14 @@ const taskController = {
       }
 
       //make sure if editing receiver, receiver exists in DB
-      const receiverExists = User.findById(receiver);
-      if (!receiverExists) {
+      const receiverExists = await User.find({ name: receiver });
+      if (!receiverExists[0]) {
         res.status(400);
         throw new Error('receiver does not exist');
       }
 
-      const patientExists = User.findById(patient);
-      if (!patientExists) {
+      const patientExists = await User.find({ name: patient });
+      if (!patientExists[0]) {
         res.status(400);
         throw new Error('patient does not exist');
       }
@@ -127,13 +127,12 @@ const taskController = {
       ) {
         const updatedTask = await Task.findByIdAndUpdate(
           req.params.id,
-          req.body,
-          { new: true }
+          req.body
         );
 
         res.status(200).json({ id: req.params.id });
       } else {
-        res.status(400);
+        res.status(401);
         throw new Error('user not authorized to update task');
       }
     } catch (err) {
@@ -144,14 +143,10 @@ const taskController = {
   deleteTask: async (req, res, next) => {
     try {
       const task = await Task.findById(req.params.id);
-      // console.log(task);
-      // console.log('req.user.id ====>', req.user.id);
-      // console.log('req.params.id ===>', req.params.id);
       if (!task) {
         res.status(400);
         throw new Error('task not found');
       }
-      console.log('task.sender.toString ===>', task.sender.toString());
       //ENSURE USER IS AUTHORIZED: only sender and receiver can delete task
       if (
         task.sender.toString() == req.user.id ||

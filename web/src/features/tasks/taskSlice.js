@@ -53,9 +53,7 @@ export const updateTask = createAsyncThunk(
       return await taskService.updateTask(id, token);
     } catch (err) {
       const message =
-        (err.response && err.response.data & err.response.data.message) ||
-        err.message ||
-        err.toString();
+        err.response?.data?.message || err.message || err.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -70,9 +68,7 @@ export const deleteTask = createAsyncThunk(
       return await taskService.deleteTask(id, token);
     } catch (err) {
       const message =
-        (err.response && err.response.data & err.response.data.message) ||
-        err.message ||
-        err.toString();
+        err.response?.data?.message || err.message || err.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
