@@ -9,9 +9,8 @@ import avatar from '../images/avatar.png';
 const TaskForm = () => {
   //sender, receiver, medication, patient, pharmacy
   //we need to type the receivers name, and it gets their id and sends it.
-  // const recipient = JSON.parse(localStorage.getItem('recipient'));
   const [formData, setFormData] = useState({
-    receiver: recipient ? recipient : '',
+    receiver: '',
     medication: '',
     patient: '',
     pharmacy: '',
@@ -22,7 +21,6 @@ const TaskForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { isError, message /*isSuccess*/ } = useSelector(
     (state) => state.tasks
   );
@@ -48,18 +46,6 @@ const TaskForm = () => {
     }));
   };
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log('FORM DATA -->', formData);
-
-  //   try {
-  //      dispatch(createTask(formData));
-  //     console.log(message);
-  //     navigate('/taskSuccess');
-  //   } catch (error) {
-  //     // handle the error
-  //   }
-  // };
 
   const onSubmit = (e) => {
     e.preventDefault();

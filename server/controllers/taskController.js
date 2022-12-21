@@ -131,7 +131,7 @@ const taskController = {
           { new: true }
         );
 
-        res.status(200).json({ message: `updated task : ${updatedTask}` });
+        res.status(200).json({ id: req.params.id });
       } else {
         res.status(400);
         throw new Error('user not authorized to update task');

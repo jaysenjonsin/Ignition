@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
-import { createTask, reset } from '../features/tasks/taskSlice';
+import { reset, updateTask } from '../features/tasks/taskSlice';
 import avatar from '../images/avatar.png';
 const TaskUpdate = () => {
   //sender, receiver, medication, patient, pharmacy
   //we need to type the receivers name, and it gets their id and sends it.
-  const { receiver, medication, patient, pharmacy, reason } = useSelector(
-    (state) => state.tasks
-  );
+  // const { receiver, medication, patient, pharmacy, reason } = useSelector(
+  //   (state) => state.tasks
+  // );
+
+  // const location = useLocation();
+  // const { selectedTask } = location.state;
+  // console.log(selectedTask?.sender);
   const [formData, setFormData] = useState({
-    receiver: receiver ? receiver : '',
+    receiver: '',
     medication: medication ? medication : '',
     patient: patient ? patient : '',
     pharmacy: pharmacy ? pharmacy : '',
     reason: reason ? reason : '',
   });
 
-  // const { receiver, medication, patient, pharmacy, reason } = formData;
+  const { receiver, medication, patient, pharmacy, reason } = formData;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,24 +54,11 @@ const TaskUpdate = () => {
     }));
   };
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log('FORM DATA -->', formData);
-
-  //   try {
-  //      dispatch(createTask(formData));
-  //     console.log(message);
-  //     navigate('/taskSuccess');
-  //   } catch (error) {
-  //     // handle the error
-  //   }
-  // };
-
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log('FORM DATA -->', formData);
 
-    dispatch(createTask(formData));
+    dispatch(updateTask(formData));
     navigate('/taskSuccess');
   };
   return (

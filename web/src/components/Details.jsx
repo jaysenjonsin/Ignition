@@ -33,7 +33,10 @@ const Details = ({ selectedTask, tasks }) => {
             </div>
             <div>
               <Link
-                to='/taskUpdate'
+                to={{
+                  pathname: '/taskUpdate',
+                  state: { selectedTask },
+                }}
                 className='btn'
                 style={{ marginLeft: '100px' }}
               >
