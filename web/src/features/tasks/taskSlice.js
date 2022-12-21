@@ -122,7 +122,6 @@ export const taskSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.message = action.payload;
-        // state.tasks = state.tasks.filter((el) => el._id !== action.payload.id);
       })
       .addCase(deleteTask.pending, (state) => {
         state.isLoading = true;

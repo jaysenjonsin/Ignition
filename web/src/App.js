@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import LoginReset from './pages/PasswordReset';
 import Register from './pages/Register';
-import TaskEdit from './pages/TaskEdit';
+import TaskUpdate from './pages/TaskUpdate';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,7 +29,7 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/taskform' element={<TaskForm />} />
           <Route path='/taskSuccess' element={<TaskSuccess />} />
-          <Route path='/TaskEdit' element={<TaskEdit />}></Route>
+          <Route path='/taskUpdate' element={<TaskUpdate />}></Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer />

@@ -33,7 +33,7 @@ const Details = ({ selectedTask, tasks }) => {
             </div>
             <div>
               <Link
-                to='/TaskEdit'
+                to='/taskUpdate'
                 className='btn'
                 style={{ marginLeft: '100px' }}
               >

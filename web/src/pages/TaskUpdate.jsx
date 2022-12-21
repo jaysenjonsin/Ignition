@@ -6,19 +6,21 @@ import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { createTask, reset } from '../features/tasks/taskSlice';
 import avatar from '../images/avatar.png';
-const TaskEdit = () => {
+const TaskUpdate = () => {
   //sender, receiver, medication, patient, pharmacy
   //we need to type the receivers name, and it gets their id and sends it.
-  const recipient = JSON.parse(localStorage.getItem('recipient'));
+  const { receiver, medication, patient, pharmacy, reason } = useSelector(
+    (state) => state.tasks
+  );
   const [formData, setFormData] = useState({
-    receiver: recipient ? recipient : '',
-    medication: '',
-    patient: '',
-    pharmacy: '',
-    reason: '',
+    receiver: receiver ? receiver : '',
+    medication: medication ? medication : '',
+    patient: patient ? patient : '',
+    pharmacy: pharmacy ? pharmacy : '',
+    reason: reason ? reason : '',
   });
 
-  const { receiver, medication, patient, pharmacy, reason } = formData;
+  // const { receiver, medication, patient, pharmacy, reason } = formData;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,7 +68,6 @@ const TaskEdit = () => {
     // console.log('FORM DATA -->', formData);
 
     dispatch(createTask(formData));
-    localStorage.removeItem('recipient');
     navigate('/taskSuccess');
   };
   return (
@@ -176,4 +177,4 @@ const TaskEdit = () => {
   );
 };
 
-export default TaskEdit;
+export default TaskUpdate;
