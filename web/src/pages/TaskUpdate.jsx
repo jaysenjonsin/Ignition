@@ -7,7 +7,9 @@ import Navbar from '../components/Navbar';
 import { reset, updateTask } from '../features/tasks/taskSlice';
 import avatar from '../images/avatar.png';
 const TaskUpdate = () => {
-
+  const location = useLocation();
+  const selectedTask = location.state;
+  console.log('SELECTED TASK INSIDE OF TASKUPDATE ==>', selectedTask);
   const [formData, setFormData] = useState({
     receiver: '',
     medication: medication ? medication : '',

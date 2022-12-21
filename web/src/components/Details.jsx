@@ -5,6 +5,7 @@ import medication from '../images/medication.png';
 import pharmacy from '../images/pharmacy.png';
 
 const Details = ({ selectedTask, tasks }) => {
+  console.log('SELECTED TASK ==>', selectedTask);
   const { user, avatar } = useSelector((state) => state.auth);
   return (
     <section className='details'>
@@ -42,6 +43,8 @@ const Details = ({ selectedTask, tasks }) => {
                 </Link>
               ) : (
                 <Link
+                  className='btn'
+                  style={{ marginLeft: '100px' }}
                   to={{
                     pathname: '/taskUpdate',
                     state: { selectedTask },
