@@ -7,15 +7,7 @@ import Navbar from '../components/Navbar';
 import { reset, updateTask } from '../features/tasks/taskSlice';
 import avatar from '../images/avatar.png';
 const TaskUpdate = () => {
-  //sender, receiver, medication, patient, pharmacy
-  //we need to type the receivers name, and it gets their id and sends it.
-  // const { receiver, medication, patient, pharmacy, reason } = useSelector(
-  //   (state) => state.tasks
-  // );
 
-  // const location = useLocation();
-  // const { selectedTask } = location.state;
-  // console.log(selectedTask?.sender);
   const [formData, setFormData] = useState({
     receiver: '',
     medication: medication ? medication : '',

@@ -121,7 +121,7 @@ export const taskSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        //UPDATING TASK
+        //UPDATING TASK TO UPDATE UI RIGHT AWAY
         const updatedTask = action.payload;
         state.tasks = state.tasks.map((task) =>
           task._id === updatedTask._id ? updatedTask : task

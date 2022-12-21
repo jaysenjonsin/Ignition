@@ -32,27 +32,22 @@ const Details = ({ selectedTask, tasks }) => {
               {tasks.length === 0 ? '' : selectedTask?.pharmacy}
             </div>
             <div>
-              <Link
-                to={{
-                  pathname: '/taskUpdate',
-                  state: { selectedTask },
-                }}
-                className='btn'
-                style={{ marginLeft: '100px' }}
-              >
-                Edit
-              </Link>
-
-              {(user?.role === 'MD' || user?.role === 'DO') && (
+              {user?.role === 'MD' || user?.role === 'DO' ? (
                 <Link
-                  to='/'
+                  to='/taskUpdate'
                   className='btn'
-                  style={{
-                    marginLeft: '100px',
-                    width: '50%',
+                  style={{ marginLeft: '100px' }}
+                >
+                  Finalize
+                </Link>
+              ) : (
+                <Link
+                  to={{
+                    pathname: '/taskUpdate',
+                    state: { selectedTask },
                   }}
                 >
-                  Additional Link
+                  Edit
                 </Link>
               )}
             </div>
