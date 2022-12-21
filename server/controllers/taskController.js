@@ -39,7 +39,7 @@ const taskController = {
         medication,
         pharmacy,
         reason,
-        status,
+        status: 'pending',
       });
 
       res.status(200).json(task);

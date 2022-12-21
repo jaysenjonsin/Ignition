@@ -94,23 +94,23 @@ const TaskForm = () => {
             </div>
             <div className='form-group'>
               <input
-                type='text'
-                className='form-control'
-                id='medication'
-                name='medication'
-                value={medication}
-                placeholder=' medication'
-                onChange={onChange}
-              />
-            </div>
-            <div className='form-group'>
-              <input
                 type='test'
                 className='form-control'
                 id='patient'
                 name='patient'
                 value={patient}
                 placeholder=' patient'
+                onChange={onChange}
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                type='text'
+                className='form-control'
+                id='medication'
+                name='medication'
+                value={medication}
+                placeholder=' medication'
                 onChange={onChange}
               />
             </div>
