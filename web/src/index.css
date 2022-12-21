@@ -395,6 +395,7 @@ p {
   border: 0.5px solid #babfc3;
   border-radius: 0.5rem;
   min-width: 200px;
+  max-width: 22rem;
   display: flex;
   height: fit-content;
   font-weight: 500;
@@ -404,6 +405,7 @@ p {
 
 .detailsCard img {
   height: fit-content;
+  width: 4rem;
 }
 
 .detailsContent {

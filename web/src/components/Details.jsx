@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import medication from '../images/medication.png';
 import pharmacy from '../images/pharmacy.png';
-import { setSelectedTask } from '../features/tasks/taskSlice';
+// import { setSelectedTask } from '../features/tasks/taskSlice';
 const Details = ({ tasks }) => {
   const { user, avatar } = useSelector((state) => state.auth);
   const { selectedTask } = useSelector((state) => state.tasks);
@@ -14,12 +14,12 @@ const Details = ({ tasks }) => {
         <div className='detailsContent'>
           <h2>Patient</h2>
           <div className='detailsCard' style={{ alignItems: 'center' }}>
-            <img src={avatar} style={{ width: '4rem' }} alt='avatar' />
+            <img src={avatar}  alt='avatar' />
             {tasks.length === 0 ? '' : selectedTask?.patient}
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
           <div className='detailsCard'>
-            <img src={medication} style={{ width: '3rem' }} alt='medication' />
+            <img src={medication}  alt='medication' />
             {tasks.length === 0 ? (
               ''
             ) : (
@@ -28,11 +28,11 @@ const Details = ({ tasks }) => {
                 <br />
                 {selectedTask === null
                   ? ''
-                  : 'Request from: ' + selectedTask?.sender}
+                  : '  -Request from: ' + selectedTask?.sender}
                 <br />
                 {selectedTask === null
                   ? ''
-                  : 'Reason for request: ' + selectedTask?.reason}
+                  : '  -Reason for request: ' + selectedTask?.reason}
               </>
             )}
           </div>
@@ -41,7 +41,6 @@ const Details = ({ tasks }) => {
             <div className='detailsCard' >
               <img
                 src={pharmacy}
-                style={{ width: '4rem', height: 'fitContent' }}
                 alt='pharmacy'
               />
               {tasks.length === 0 ? '' : selectedTask?.pharmacy}

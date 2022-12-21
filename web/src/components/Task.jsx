@@ -4,19 +4,28 @@ import { deleteTask } from '../features/tasks/taskSlice';
 import deleteButton from '../images/deleteButton.png';
 import pendingTask from '../images/pendingTask.png';
 import { setSelectedTask } from '../features/tasks/taskSlice';
-//passing down the setState function as a prop!!
 const Task = ({ task }) => {
   const dispatch = useDispatch();
   const { selectedTask } = useSelector((state) => state.tasks);
-  const setTaskData = (e) => {
+
+  const handleDivClick = (e) => {
+    // Dispatch the action to set selectedTask to task
     dispatch(setSelectedTask(task));
   };
 
-  // console.log('TASK ===>', task);
+  const handleDeleteClick = (e) => {
+    //stop propagation prevents event from bubbling up to the parent div element
+    e.stopPropagation();
+    // Dispatch the action to delete the task and set selectedTask to null
+    dispatch(deleteTask(task._id));
+    //if we didn't have this, then Details would still show details of the deleted task even after deleting
+    dispatch(setSelectedTask(null));
+  };
+
   return (
     <div
       className='task'
-      onClick={setTaskData}
+      onClick={handleDivClick}
       style={{
         backgroundColor: task === selectedTask ? '#E6EFFF' : 'white',
       }}
@@ -31,15 +40,11 @@ const Task = ({ task }) => {
       })}
       <br />
       Rx request for {task?.patient}
-      {/* from {task.sender}
-      sender: {task.sender} receiver: {task.receiver} medication:
-      {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
-      reason:{task.reason} */}
       <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
         <img
           src={deleteButton}
           alt='delete button'
-          onClick={() => dispatch(deleteTask(task._id))}
+          onClick={handleDeleteClick}
         />
       </div>
     </div>
