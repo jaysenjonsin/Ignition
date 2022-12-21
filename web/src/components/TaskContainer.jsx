@@ -10,8 +10,6 @@ const TaskContainer = () => {
     (state) => state.tasks
   );
 
-  const [selectedTask, setSelectedTask] = useState(null);
-
   useEffect(() => {
     dispatch(getTasks());
     return () => {
@@ -40,12 +38,7 @@ const TaskContainer = () => {
           {tasks.length > 0 ? (
             <div className='tasks'>
               {tasks.map((task) => (
-                <Task
-                  key={task._id}
-                  task={task}
-                  setSelectedTask={setSelectedTask}
-                  selectedTask={selectedTask}
-                />
+                <Task key={task._id} task={task} />
               ))}
             </div>
           ) : (
@@ -54,7 +47,7 @@ const TaskContainer = () => {
             </div>
           )}
         </div>
-        <Details selectedTask={selectedTask} tasks={tasks} />
+        <Details tasks={tasks} />
       </div>
     </>
   );

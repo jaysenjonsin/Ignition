@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteTask } from '../features/tasks/taskSlice';
 import deleteButton from '../images/deleteButton.png';
 import pendingTask from '../images/pendingTask.png';
+import { setSelectedTask } from '../features/tasks/taskSlice';
 //passing down the setState function as a prop!!
-const Task = ({ task, selectedTask, setSelectedTask }) => {
+const Task = ({ task }) => {
   const dispatch = useDispatch();
-
+  const { selectedTask } = useSelector((state) => state.tasks);
   const setTaskData = (e) => {
-    setSelectedTask(task);
-    console.log(selectedTask);
+    dispatch(setSelectedTask(task));
   };
   return (
     <div
@@ -21,14 +21,14 @@ const Task = ({ task, selectedTask, setSelectedTask }) => {
       }}
     >
       <div>
-        <img src={task.status === 'pending' ? pendingTask : ''} alt='' />
+        <img src={task?.status === 'pending' ? pendingTask : ''} alt='' />
       </div>
-      {new Date(task.createdAt).toLocaleString('en-US', {
+      {new Date(task?.createdAt).toLocaleString('en-US', {
         month: 'numeric',
         day: 'numeric',
         year: 'numeric',
       })}
-      Rx request for {task.patient}
+      Rx request for {task?.patient}
       {/* from {task.sender}
       sender: {task.sender} receiver: {task.receiver} medication:
       {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}

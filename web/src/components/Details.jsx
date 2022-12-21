@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import medication from '../images/medication.png';
 import pharmacy from '../images/pharmacy.png';
-
-const Details = ({ selectedTask, tasks }) => {
-  console.log('SELECTED TASK ==>', selectedTask);
+import { setSelectedTask } from '../features/tasks/taskSlice';
+const Details = ({ tasks }) => {
   const { user, avatar } = useSelector((state) => state.auth);
+  const { selectedTask } = useSelector((state) => state.tasks);
   return (
     <section className='details'>
       <div className='detailsContainer'>
@@ -45,10 +45,7 @@ const Details = ({ selectedTask, tasks }) => {
                 <Link
                   className='btn'
                   style={{ marginLeft: '100px' }}
-                  to={{
-                    pathname: '/taskUpdate',
-                    state: { selectedTask },
-                  }}
+                  to='/taskUpdate'
                 >
                   Edit
                 </Link>

@@ -7,6 +7,8 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
+  //manages selectedTask state through browser history -> we can rememeber the selected task when going to update page
+  selectedTask: null,
 };
 
 export const createTask = createAsyncThunk(
@@ -15,6 +17,7 @@ export const createTask = createAsyncThunk(
     try {
       //this is protected route, we need to get token, which we can get using thunkAPI.getState().<stateName>
       const token = thunkAPI.getState().auth.user.token;
+      //async thunk returns an action creator that runs the promise callback and dispatches the lifecycle actions based on the returned promise
       return await taskService.createTask(taskData, token);
     } catch (err) {
       const message =
@@ -80,7 +83,11 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => initialState,
+    setSelectedTask: (state, action) => {
+      state.selectedTask = action.payload;
+    },
   },
+  //managing asyncthunk / promise based reducers life cycle (axios requests)
   extraReducers: (builder) => {
     builder
       .addCase(createTask.pending, (state) => {
@@ -123,7 +130,7 @@ export const taskSlice = createSlice({
         state.isSuccess = true;
         //UPDATING TASK TO UPDATE UI RIGHT AWAY
         const updatedTask = action.payload;
-        //remember in backend, we send back an object with key of id, not ._id: {id: task.id}. So we access this with action.payload.id, NOT action.payload._id. 
+        //remember in backend, we send back an object with key of id, not ._id: {id: task.id}. So we access this with action.payload.id, NOT action.payload._id.
         state.tasks = state.tasks.map((task) =>
           task._id === updatedTask.id ? updatedTask : task
         );
@@ -146,6 +153,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { reset } = taskSlice.actions;
+export const { reset, setSelectedTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

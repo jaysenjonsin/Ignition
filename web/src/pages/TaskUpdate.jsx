@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { reset, updateTask } from '../features/tasks/taskSlice';
 import avatar from '../images/avatar.png';
+import { setSelectedTask } from '../features/tasks/taskSlice';
 const TaskUpdate = () => {
-  const location = useLocation();
-  const selectedTask = location.state;
-  console.log('SELECTED TASK INSIDE OF TASKUPDATE ==>', selectedTask);
+  const { selectedTask } = useSelector((state) => state.tasks);
   const [formData, setFormData] = useState({
-    receiver: '',
-    medication: medication ? medication : '',
-    patient: patient ? patient : '',
-    pharmacy: pharmacy ? pharmacy : '',
-    reason: reason ? reason : '',
+    receiver: selectedTask?.receiver ?? '',
+    medication: selectedTask?.medication ?? '',
+    patient: selectedTask?.patient ?? '',
+    pharmacy: selectedTask?.pharmacy ?? '',
+    reason: selectedTask?.reason ?? '',
   });
 
   const { receiver, medication, patient, pharmacy, reason } = formData;
@@ -155,7 +154,7 @@ const TaskUpdate = () => {
               </button>
             </div>
           </form>
-          <Link to='/'>back to dashboard</Link>
+          {/* <Link to='/'>back to dashboard</Link> */}
         </section>
       </section>
     </div>
