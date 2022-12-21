@@ -123,8 +123,9 @@ export const taskSlice = createSlice({
         state.isSuccess = true;
         //UPDATING TASK TO UPDATE UI RIGHT AWAY
         const updatedTask = action.payload;
+        //remember in backend, we send back an object with key of id, not ._id: {id: task.id}. So we access this with action.payload.id, NOT action.payload._id. 
         state.tasks = state.tasks.map((task) =>
-          task._id === updatedTask._id ? updatedTask : task
+          task._id === updatedTask.id ? updatedTask : task
         );
       })
       .addCase(deleteTask.pending, (state) => {
