@@ -14,12 +14,12 @@ const Details = ({ tasks }) => {
         <div className='detailsContent'>
           <h2>Patient</h2>
           <div className='detailsCard' style={{ alignItems: 'center' }}>
-            <img src={avatar}  alt='avatar' />
+            <img src={avatar} alt='avatar' />
             {tasks.length === 0 ? '' : selectedTask?.patient}
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
           <div className='detailsCard'>
-            <img src={medication}  alt='medication' />
+            <img src={medication} alt='medication' />
             {tasks.length === 0 ? (
               ''
             ) : (
@@ -38,17 +38,14 @@ const Details = ({ tasks }) => {
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
           <div style={{ display: 'flex' }}>
-            <div className='detailsCard' >
-              <img
-                src={pharmacy}
-                alt='pharmacy'
-              />
+            <div className='detailsCard'>
+              <img src={pharmacy} alt='pharmacy' />
               {tasks.length === 0 ? '' : selectedTask?.pharmacy}
             </div>
             <div>
               {user?.role === 'MD' || user?.role === 'DO' ? (
                 <Link
-                  to='/taskUpdate'
+                  to='/taskFinalize'
                   className='btn'
                   style={{ marginLeft: '100px' }}
                 >

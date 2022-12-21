@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import LoginReset from './pages/PasswordReset';
 import Register from './pages/Register';
 import TaskUpdate from './pages/TaskUpdate';
+import TaskFinalize from './pages/TaskFinalize';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,7 +30,8 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/taskform' element={<TaskForm />} />
           <Route path='/taskSuccess' element={<TaskSuccess />} />
-          <Route path='/taskUpdate' element={<TaskUpdate />}></Route>
+          <Route path='/taskUpdate' element={<TaskUpdate />} />
+          <Route path='taskFinalize' element={<TaskFinalize />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
