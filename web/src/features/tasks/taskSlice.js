@@ -47,10 +47,11 @@ export const getTasks = createAsyncThunk(
 
 export const updateTask = createAsyncThunk(
   'task/update',
-  async (id, thunkAPI) => {
+  async (taskData, thunkAPI) => {
     try {
+      console.log('TASK DATA[0', taskData[0]);
       const token = thunkAPI.getState().auth.user.token;
-      return await taskService.updateTask(id, token);
+      return await taskService.updateTask(taskData, token);
     } catch (err) {
       const message =
         err.response?.data?.message || err.message || err.toString();
@@ -78,7 +79,13 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      state.tasks = [];
+      state.isError = false;
+      state.isSuccess = false;
+      state.isLoading = false;
+      state.message = '';
+    },
     setSelectedTask: (state, action) => {
       state.selectedTask = action.payload;
     },
@@ -124,8 +131,10 @@ export const taskSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.message = action.payload;
         //UPDATING TASK TO UPDATE UI RIGHT AWAY
         const updatedTask = action.payload;
+        console.log('ACTION PAYLOAD ==>', updatedTask);
         //remember in backend, we send back an object with key of id, not ._id: {id: task.id}. So we access this with action.payload.id, NOT action.payload._id.
         state.tasks = state.tasks.map((task) =>
           task._id === updatedTask.id ? updatedTask : task

@@ -27,13 +27,18 @@ const taskService = {
     return response.data;
   },
 
-  updateTask: async (taskId, token) => {
+  updateTask: async (taskData, token) => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await axios.put(API_URL + taskId, config);
+    const response = await axios.put(
+      API_URL + taskData[1],
+      taskData[0],
+      config
+    );
+    // console.log('TASK DATA 1 ===>', taskData[1]);
     return response.data;
   },
 

@@ -11,6 +11,8 @@ const Task = ({ task }) => {
   const setTaskData = (e) => {
     dispatch(setSelectedTask(task));
   };
+
+  // console.log('TASK ===>', task);
   return (
     <div
       className='task'

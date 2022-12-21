@@ -68,6 +68,7 @@ const taskController = {
         return {
           _id: task._id,
           sender: task.sender.name,
+          senderId: task.sender._id,
           receiver: task.receiver.name,
           patient: task.patient.name,
           medication: task.medication,
@@ -125,10 +126,14 @@ const taskController = {
         task.sender.toString() == req.user.id ||
         task.receiver.toString() == req.user.id
       ) {
-        const updatedTask = await Task.findByIdAndUpdate(
-          req.params.id,
-          req.body
-        );
+        const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
+          sender,
+          //front end is sending the name. remember, when creating task, we use their ID. so convert frontends input back to the id.
+          receiver: receiverExists[0],
+          patient: patientExists[0],
+          medication,
+          pharmacy,
+        });
 
         res.status(200).json({ id: req.params.id });
       } else {

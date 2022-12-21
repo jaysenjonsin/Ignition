@@ -10,13 +10,15 @@ import { setSelectedTask } from '../features/tasks/taskSlice';
 const TaskUpdate = () => {
   const { selectedTask } = useSelector((state) => state.tasks);
   const [formData, setFormData] = useState({
+    sender: selectedTask?.senderId ?? '',
     receiver: selectedTask?.receiver ?? '',
     medication: selectedTask?.medication ?? '',
     patient: selectedTask?.patient ?? '',
     pharmacy: selectedTask?.pharmacy ?? '',
     reason: selectedTask?.reason ?? '',
   });
-
+  // console.log('SELECTED TASK ==>', selectedTask);
+  // console.log('RECEIVER ==>', selectedTask?.receiver);
   const { receiver, medication, patient, pharmacy, reason } = formData;
 
   const dispatch = useDispatch();
@@ -47,12 +49,16 @@ const TaskUpdate = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await dispatch(updateTask({ 0: formData, 1: selectedTask._id }));
+      console.log('FORM DATA BEING SENT:', formData);
+      navigate('/taskSuccess');
+    } catch (err) {
+      console.log(err);
+    }
     // console.log('FORM DATA -->', formData);
-
-    dispatch(updateTask(formData));
-    navigate('/taskSuccess');
   };
   return (
     <div style={{ height: '100vh' }}>
