@@ -284,6 +284,10 @@ a {
   background-color: var(--white);
 }
 
+.header img:hover {
+  cursor: pointer;
+}
+
 /* used for positioning on page y axis */
 .taskGeneratorMain {
   padding: 4em;
@@ -364,7 +368,7 @@ p {
   display: flex;
   background-color: white;
   width: 100%;
-  overflow: auto !important;
+  overflow: auto;
 }
 
 /*   task container   */

@@ -18,15 +18,15 @@ const Dashboard = () => {
   }, [user, navigate]);
   return (
     <>
-      <div className='dashboardContainer'>
+      <div className='dashboardContainer' /*style={{ heignt: '100%' }}*/>
         <Header />
         <Navbar />
         <section className='main'>
           <TaskGenerator />
+          {/* <div style={{ height: '1000px', overflow: 'scroll' }}> */}
           <TaskContainer />
+          {/* </div> */}
         </section>
-        {/* height of header is 6.5% and this is at 50% of rest of page */}
-        {/* <hr style={{ height: '46.75%' }} /> */}
       </div>
     </>
   );

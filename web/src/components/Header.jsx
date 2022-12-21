@@ -22,15 +22,16 @@ const Header = () => {
     <section className='header'>
       {/* if user is undefined, we don't render anything. if it is defined, render their name*/}
       <div className='headerContent' style={{ display: 'flex' }}>
-        <Link to='/'>
+        <Link to='/' style={{ paddingTop: '.5rem' }}>
           <img
             src={logo}
             alt='logo'
             style={{
               width: '1.3rem',
-              height: '2rem',
+              height: '1.7rem',
               marginTop: '5px',
               marginLeft: '1rem',
+              // paddingTop: '.2rem',
               float: 'left',
             }}
           />
@@ -66,19 +67,24 @@ const Header = () => {
               marginTop: '10px',
               verticalAlign: 'middle',
             }}
+            //TEMPORARY LOGOUT
+            onClick={onLogout}
             alt='avatar'
           />
           <div
             style={{
               // marginTop: 'auto',
-              paddingTop: '1em',
+              paddingTop: '.7em',
+              fontSize: '.9rem',
+              marginTop: '.5rem',
               paddingLeft: '.5em',
+              paddingRight: '1em',
               display: 'inline-block',
             }}
           >
             {user?.name}, {user?.role}
           </div>
-          <button onClick={onLogout}>logout</button>
+          {/* <button onClick={onLogout}>logout</button> */}
         </div>
       </div>
     </section>
