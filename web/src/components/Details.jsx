@@ -24,17 +24,35 @@ const Details = ({ selectedTask, tasks }) => {
           <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
           <div style={{ display: 'flex' }}>
             <div className='detailsCard'>
-              <img src={pharmacy} style={{ width: '4rem' }} alt='pharmacy' />
+              <img
+                src={pharmacy}
+                style={{ width: '4rem', height: 'fitContent' }}
+                alt='pharmacy'
+              />
               {tasks.length === 0 ? '' : selectedTask?.pharmacy}
             </div>
-            <Link to='/' className='btn'>
-              Edit
-            </Link>
-            {(user?.role === 'MD' || user?.role === 'DO') && (
-              <Link to='/' className='btn'>
-                Additional Link
+            <div>
+              <Link
+                to='/TaskEdit'
+                className='btn'
+                style={{ marginLeft: '100px' }}
+              >
+                Edit
               </Link>
-            )}
+
+              {(user?.role === 'MD' || user?.role === 'DO') && (
+                <Link
+                  to='/'
+                  className='btn'
+                  style={{
+                    marginLeft: '100px',
+                    width: '50%',
+                  }}
+                >
+                  Additional Link
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

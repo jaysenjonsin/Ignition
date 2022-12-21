@@ -42,6 +42,22 @@ export const getTasks = createAsyncThunk(
   }
 );
 
+export const updateTask = createAsyncThunk(
+  'task/update',
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await taskService.updateTask(id, token);
+    } catch (err) {
+      const message =
+        (err.response && err.response.data & err.response.data.message) ||
+        err.message ||
+        err.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const deleteTask = createAsyncThunk(
   'tasks/delete',
   async (id, thunkAPI) => {
@@ -93,6 +109,20 @@ export const taskSlice = createSlice({
         state.isSuccess = true;
         //payload will contain all goals we receive
         state.tasks = action.payload;
+      })
+      .addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateTask.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+        // state.tasks = state.tasks.filter((el) => el._id !== action.payload.id);
       })
       .addCase(deleteTask.pending, (state) => {
         state.isLoading = true;

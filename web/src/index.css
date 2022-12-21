@@ -99,6 +99,7 @@ body::-webkit-scrollbar-track {
 
 .btn {
   margin-top: 1.5rem;
+  text-decoration: none;
   /*centering the button --> same as margin: 0 auto*/
   margin-inline: auto;
   padding: 16px;
@@ -387,6 +388,7 @@ p {
   border-radius: 0.5rem;
   min-width: 200px;
   display: flex;
+  height: fit-content;
 }
 
 .detailsContent {
