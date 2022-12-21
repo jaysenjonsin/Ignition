@@ -20,7 +20,15 @@ const Details = ({ tasks }) => {
           <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
           <div className='detailsCard'>
             <img src={medication} style={{ width: '4rem' }} alt='medication' />
-            {tasks.length === 0 ? '' : selectedTask?.medication}
+            {tasks.length === 0 ? (
+              ''
+            ) : (
+              <>
+                {selectedTask?.medication}
+                <br />
+                {selectedTask === null ? '' : 'Reason for request: ' + selectedTask?.reason}
+              </>
+            )}
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
           <div style={{ display: 'flex' }}>

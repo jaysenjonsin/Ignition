@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTasks, reset } from '../features/tasks/taskSlice';
+import {
+  getTasks,
+  reset,
+  resetSelectedTask,
+} from '../features/tasks/taskSlice';
 import Details from './Details';
 import Task from './Task';
 const TaskContainer = () => {
@@ -17,6 +21,11 @@ const TaskContainer = () => {
       dispatch(reset());
     };
   }, [dispatch]);
+
+  //unselects the selected task when component mounts. So after we finish updating the task and go back to the dashboard, the task that was just edited is no longer selected.
+  useEffect(() => {
+    dispatch(resetSelectedTask());
+  }, []);
 
   // if (isLoading) return <h2>Loading...</h2>;
   return (

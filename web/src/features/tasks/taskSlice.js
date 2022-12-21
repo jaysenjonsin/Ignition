@@ -86,6 +86,10 @@ export const taskSlice = createSlice({
       state.isLoading = false;
       state.message = '';
     },
+    resetSelectedTask: (state) => {
+      state.selectedTask = null;
+    },
+
     setSelectedTask: (state, action) => {
       state.selectedTask = action.payload;
     },
@@ -131,7 +135,6 @@ export const taskSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = action.payload;
         //UPDATING TASK TO UPDATE UI RIGHT AWAY
         const updatedTask = action.payload;
         console.log('ACTION PAYLOAD ==>', updatedTask);
@@ -158,6 +161,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { reset, setSelectedTask } = taskSlice.actions;
+export const { reset, resetSelectedTask, setSelectedTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
