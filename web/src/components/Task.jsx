@@ -18,11 +18,10 @@ const Task = ({ task }) => {
       className='task'
       onClick={setTaskData}
       style={{
-        border: '1px solid #BABFC3',
         backgroundColor: task === selectedTask ? '#E6EFFF' : 'white',
       }}
     >
-      <div>
+      <div style={{ paddingRight: '1em', paddingTop: '0.2em' }}>
         <img src={task?.status === 'pending' ? pendingTask : ''} alt='' />
       </div>
       {new Date(task?.createdAt).toLocaleString('en-US', {
@@ -30,12 +29,13 @@ const Task = ({ task }) => {
         day: 'numeric',
         year: 'numeric',
       })}
+      <br />
       Rx request for {task?.patient}
       {/* from {task.sender}
       sender: {task.sender} receiver: {task.receiver} medication:
       {task.medication} patient: {task.patient} pharmacy: {task.pharmacy}
       reason:{task.reason} */}
-      <div>
+      <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
         <img
           src={deleteButton}
           alt='delete button'

@@ -7,6 +7,10 @@
   font-family: 'inter';
 }
 
+/* body {
+  overflow: hidden;
+} */
+
 :root {
   --main-button-color: #ff7a00;
   --white: #ffffff;
@@ -320,7 +324,7 @@ p {
 
 /* Spinner.jsx  */
 
-.lds-ring {
+/* .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
@@ -354,12 +358,13 @@ p {
   100% {
     transform: rotate(360deg);
   }
-}
+} */
 
 .information {
   display: flex;
   background-color: white;
   width: 100%;
+  overflow: auto !important;
 }
 
 /*   task container   */
@@ -375,6 +380,9 @@ p {
 
 .task {
   display: flex;
+  border: 1px solid #babfc3;
+  padding: 1em 0;
+  line-height: 1.4rem;
 }
 
 .task img {
@@ -388,6 +396,13 @@ p {
   border-radius: 0.5rem;
   min-width: 200px;
   display: flex;
+  height: fit-content;
+  font-weight: 500;
+  color: #202223;
+  align-items: center;
+}
+
+.detailsCard img {
   height: fit-content;
 }
 

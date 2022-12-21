@@ -13,18 +13,22 @@ const Details = ({ tasks }) => {
         <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>Details</h1>
         <div className='detailsContent'>
           <h2>Patient</h2>
-          <div className='detailsCard'>
+          <div className='detailsCard' style={{ alignItems: 'center' }}>
             <img src={avatar} style={{ width: '4rem' }} alt='avatar' />
             {tasks.length === 0 ? '' : selectedTask?.patient}
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
           <div className='detailsCard'>
-            <img src={medication} style={{ width: '4rem' }} alt='medication' />
+            <img src={medication} style={{ width: '3rem' }} alt='medication' />
             {tasks.length === 0 ? (
               ''
             ) : (
               <>
                 {selectedTask?.medication}
+                <br />
+                {selectedTask === null
+                  ? ''
+                  : 'Request from: ' + selectedTask?.sender}
                 <br />
                 {selectedTask === null
                   ? ''
@@ -34,7 +38,7 @@ const Details = ({ tasks }) => {
           </div>
           <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
           <div style={{ display: 'flex' }}>
-            <div className='detailsCard'>
+            <div className='detailsCard' >
               <img
                 src={pharmacy}
                 style={{ width: '4rem', height: 'fitContent' }}
