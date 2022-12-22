@@ -30,8 +30,12 @@ const Task = ({ task }) => {
         backgroundColor: task === selectedTask ? '#E6EFFF' : 'white',
       }}
     >
-      <div style={{ paddingRight: '1em', paddingTop: '0.2em' }}>
-        <img src={task?.status === 'pending' ? pendingTask : ''} alt='' />
+      <div style={{ paddingTop: '.8em' }}>
+        <img
+          src={task?.status === 'pending' ? pendingTask : ''}
+          style={{ paddingLeft: '2em', paddingRight: '2em' }}
+          alt=''
+        />
       </div>
       {new Date(task?.createdAt).toLocaleString('en-US', {
         month: 'numeric',

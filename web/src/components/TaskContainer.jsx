@@ -28,40 +28,38 @@ const TaskContainer = () => {
   }, []);
 
   // if (isLoading) return <h2>Loading...</h2>;
-return (
-  <>
-    <div
-      className='information'
-    >
-      <div className='taskContainer' style={{ width: '65%' }}>
-        <h2
-          style={{
-            fontFamily: 'inter',
-            fontWeight: '700',
-            fontSize: '2rem',
-            color: '#363636',
-            paddingLeft: '.5em',
-            paddingTop: '.5em',
-          }}
-        >
-          Recent Tasks
-        </h2>
-        {tasks.length > 0 ? (
-          <div className='tasks'>
-            {tasks.map((task) => (
-              <Task key={task._id} task={task} />
-            ))}
-          </div>
-        ) : (
-          <div style={{ marginTop: '2em', marginLeft: '1em' }}>
-            You have no tasks.
-          </div>
-        )}
+  return (
+    <>
+      <div className='information'>
+        <div className='taskContainer' style={{ width: '65%' }}>
+          <h2
+            style={{
+              fontFamily: 'inter',
+              fontWeight: '700',
+              fontSize: '2rem',
+              color: '#363636',
+              paddingLeft: '2.1em',
+              paddingTop: '.5em',
+            }}
+          >
+            Recent Tasks
+          </h2>
+          {tasks.length > 0 ? (
+            <div className='tasks'>
+              {tasks.map((task) => (
+                <Task key={task._id} task={task} />
+              ))}
+            </div>
+          ) : (
+            <div style={{ marginTop: '2em', marginLeft: '1em' }}>
+              You have no tasks.
+            </div>
+          )}
+        </div>
+        <Details tasks={tasks} />
       </div>
-      <Details tasks={tasks} />
-    </div>
-  </>
-);
+    </>
+  );
 };
 
 export default TaskContainer;

@@ -385,8 +385,9 @@ p {
 .task {
   display: flex;
   border: 1px solid #babfc3;
+  border-right: none;
   padding: 1em 0;
-  line-height: 1.4rem;
+  line-height: 1.9em;
 }
 
 .task img {

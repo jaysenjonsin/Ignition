@@ -66,12 +66,15 @@ const TaskUpdate = () => {
       <hr style={{ marginBottom: '-1px' }} />
       <Navbar />
       <section className='main'>
-        <section className='form' style={{ marginTop: '100px' }}>
-          <form onSubmit={onSubmit}>
-            <div className='form-group' style={{ display: 'flex' }}>
+        <section style={{ marginTop: '100px' }}>
+          <form className='form' onSubmit={onSubmit}>
+            <div className='form-group'>
               {/* <div>
                 <img src={avatar} alt='' />
               </div> */}
+              {/* <h1 style={{ fontSize: '2rem' }}>
+                Medication Request for {selectedTask?.receiver}
+              </h1> */}
               <input
                 //CHANGE TO DROPDOWN MENU IF THERE IS TIME
                 type='text'
@@ -129,17 +132,15 @@ const TaskUpdate = () => {
             </div>
 
             <div className='form-group'>
-              {/*adding two classes to our button */}
-              <button
-                type='submit'
-                className='btn btn-block'
-                style={{ backgroundColor: '#127CFC' }}
-              >
-                Save draft
-              </button>
-            </div>
-            <div className='form-group'>
-              {/*adding two classes to our button */}
+              <div className='form-group'>
+                <button
+                  type='submit'
+                  className='btn btn-block'
+                  style={{ backgroundColor: '#127CFC' }}
+                >
+                  Save draft
+                </button>
+              </div>
               <button
                 type='submit'
                 className='btn btn-block'
