@@ -402,6 +402,7 @@ p {
 
 .detailsCard {
   border: 0.5px solid #babfc3;
+  width: 100%;
   border-radius: 0.5rem;
   min-width: 200px;
   max-width: 22rem;

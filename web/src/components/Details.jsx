@@ -47,7 +47,7 @@ const Details = ({ tasks }) => {
                 <Link
                   to='/taskFinalize'
                   className='btn'
-                  style={{ marginLeft: '100px' }}
+                  style={{ marginLeft: '1rem' }}
                 >
                   Edit or Deny
                 </Link>

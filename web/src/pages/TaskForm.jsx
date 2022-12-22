@@ -46,7 +46,6 @@ const TaskForm = () => {
     }));
   };
 
-
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log('FORM DATA -->', formData);
@@ -62,6 +61,7 @@ const TaskForm = () => {
       <Navbar />
       <section className='main'>
         <section className='form' style={{ marginTop: '100px' }}>
+          <h1 style={{ fontSize: '2rem' }}>Did not finish layout yet sorry </h1>
           <form onSubmit={onSubmit}>
             <div className='form-group' style={{ display: 'flex' }}>
               {/* <div>
