@@ -36,23 +36,35 @@ const Task = ({ task }) => {
     dispatch(setSelectedTask(null));
   };
 
-  const approveRequest = async (e) => {
+  const approveRequest = (e) => {
     e.stopPropagation();
+    window.location.reload();
+    dispatch(setSelectedTask(task));
+    dispatch(
+      updateTask({
+        0: {
+          ...formData,
+          status: 'approved',
+        },
+        1: task._id,
+      })
+    );
     // e.preventDefault();
-    try {
-      window.location.reload();
-      await dispatch(
-        updateTask({
-          0: {
-            ...formData,
-            status: 'approved',
-          },
-          1: selectedTask._id,
-        })
-      );
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   // window.location.reload();
+    //   dispatch(setSelectedTask(task));
+    //   await dispatch(
+    //     updateTask({
+    //       0: {
+    //         ...formData,
+    //         status: 'approved',
+    //       },
+    //       1: selectedTask._id,
+    //     })
+    //   );
+    // } catch (err) {
+    //   console.log(err);
+    // }
     // console.log('FORM DATA -->', formData);
   };
 

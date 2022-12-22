@@ -42,7 +42,7 @@ const Details = ({ tasks }) => {
               <img src={pharmacy} alt='pharmacy' />
               {tasks.length === 0 ? '' : selectedTask?.pharmacy}
             </div>
-            <div>
+            <div style={{ marginTop: '-1.5em' }}>
               {user?.role === 'MD' || user?.role === 'DO' ? (
                 <Link
                   to='/taskFinalize'
