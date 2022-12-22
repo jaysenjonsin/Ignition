@@ -18,16 +18,24 @@ const Dashboard = () => {
   }, [user, navigate]);
   return (
     <>
-      <div className='dashboardContainer' /*style={{ heignt: '100%' }}*/>
+      {/* <div style={{ height: '100vh', overflow: 'hidden' }}> */}
+      <div
+        className='dashboardContainer'
+        // style={{ height: 'auto', overflow: 'hidden' }}
+      >
         <Header />
         <Navbar />
-        <section className='main'>
+        <section
+          className='main'
+          // style={{ height: '1000px', overflow: 'auto' }}
+        >
           <TaskGenerator />
           {/* <div style={{ height: '1000px', overflow: 'scroll' }}> */}
-          <TaskContainer />
+          <TaskContainer style={{ overflow: 'auto' }} />
           {/* </div> */}
         </section>
       </div>
+      {/* </div> */}
     </>
   );
 };

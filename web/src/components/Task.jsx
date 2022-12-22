@@ -4,6 +4,7 @@ import { deleteTask, updateTask } from '../features/tasks/taskSlice';
 import deleteButton from '../images/deleteButton.png';
 import pendingTask from '../images/pendingTask.png';
 import deniedTask from '../images/deniedTask.png';
+import approvedTask from '../images/approvedTask.png';
 import { setSelectedTask } from '../features/tasks/taskSlice';
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -36,9 +37,10 @@ const Task = ({ task }) => {
   };
 
   const approveRequest = async (e) => {
-    // e.stopPropagation();
+    e.stopPropagation();
     // e.preventDefault();
     try {
+      window.location.reload();
       await dispatch(
         updateTask({
           0: {
@@ -69,7 +71,7 @@ const Task = ({ task }) => {
               ? pendingTask
               : task?.status === 'denied'
               ? deniedTask
-              : ''
+              : approvedTask
           }
           style={{ paddingLeft: '2em', paddingRight: '2em' }}
           alt=''
