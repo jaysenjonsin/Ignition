@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTask } from '../features/tasks/taskSlice';
+import { deleteTask, updateTask } from '../features/tasks/taskSlice';
 import deleteButton from '../images/deleteButton.png';
 import pendingTask from '../images/pendingTask.png';
+import deniedTask from '../images/deniedTask.png';
 import { setSelectedTask } from '../features/tasks/taskSlice';
 const Task = ({ task }) => {
   const dispatch = useDispatch();
   const { selectedTask } = useSelector((state) => state.tasks);
   const { user } = useSelector((state) => state.auth);
+
+  const formData = {
+    sender: selectedTask?.senderId ?? '',
+    receiver: selectedTask?.receiver ?? '',
+    medication: selectedTask?.medication ?? '',
+    patient: selectedTask?.patient ?? '',
+    pharmacy: selectedTask?.pharmacy ?? '',
+    reason: selectedTask?.reason ?? '',
+    status: selectedTask?.status ?? '',
+  };
+
   const handleDivClick = (e) => {
     // Dispatch the action to set selectedTask to task
     dispatch(setSelectedTask(task));
@@ -23,6 +35,25 @@ const Task = ({ task }) => {
     dispatch(setSelectedTask(null));
   };
 
+  const approveRequest = async (e) => {
+    // e.stopPropagation();
+    // e.preventDefault();
+    try {
+      await dispatch(
+        updateTask({
+          0: {
+            ...formData,
+            status: 'approved',
+          },
+          1: selectedTask._id,
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    // console.log('FORM DATA -->', formData);
+  };
+
   return (
     <div
       className='task'
@@ -33,7 +64,13 @@ const Task = ({ task }) => {
     >
       <div style={{ paddingTop: '.8em' }}>
         <img
-          src={task?.status === 'pending' ? pendingTask : ''}
+          src={
+            task?.status === 'pending'
+              ? pendingTask
+              : task?.status === 'denied'
+              ? deniedTask
+              : ''
+          }
           style={{ paddingLeft: '2em', paddingRight: '2em' }}
           alt=''
         />
@@ -59,9 +96,12 @@ const Task = ({ task }) => {
           onClick={handleDeleteClick}
         />
         {user?.role === 'MD' ? (
-          <div className='approveTask' style={{ marginLeft: 'auto' }}>
-            {' '}
-            ✓{' '}
+          <div
+            className='approveTask'
+            onClick={approveRequest}
+            style={{ marginLeft: 'auto' }}
+          >
+            ✓
           </div>
         ) : (
           ''

@@ -73,7 +73,7 @@ const TaskFinalize = () => {
           1: selectedTask._id,
         })
       );
-      navigate('/taskSuccess');
+      navigate('/taskDenied');
     } catch (err) {
       console.log(err);
     }

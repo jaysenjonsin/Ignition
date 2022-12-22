@@ -19,6 +19,7 @@ if (typeof window !== 'undefined') {
 }
 import TaskForm from './pages/TaskForm';
 import TaskSuccess from './pages/TaskSuccess';
+import TaskDenied from './pages/TaskDenied';
 const App = () => {
   return (
     <>
@@ -31,7 +32,8 @@ const App = () => {
           <Route path='/taskform' element={<TaskForm />} />
           <Route path='/taskSuccess' element={<TaskSuccess />} />
           <Route path='/taskUpdate' element={<TaskUpdate />} />
-          <Route path='taskFinalize' element={<TaskFinalize />} />
+          <Route path='/taskFinalize' element={<TaskFinalize />} />
+          <Route path='/taskDenied' element={<TaskDenied />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

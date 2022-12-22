@@ -53,7 +53,7 @@ const TaskUpdate = () => {
     e.preventDefault();
     try {
       await dispatch(updateTask({ 0: formData, 1: selectedTask._id }));
-      console.log('FORM DATA BEING SENT:', formData);
+      // console.log('FORM DATA BEING SENT:', formData);
       navigate('/taskSuccess');
     } catch (err) {
       console.log(err);
