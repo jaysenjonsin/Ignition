@@ -49,7 +49,7 @@ const Details = ({ tasks }) => {
                   className='btn'
                   style={{ marginLeft: '100px' }}
                 >
-                  Finalize
+                  Edit or Deny
                 </Link>
               ) : (
                 <Link

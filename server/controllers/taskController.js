@@ -88,7 +88,7 @@ const taskController = {
   },
 
   updateTask: async (req, res, next) => {
-    const { sender, receiver, patient, medication, pharmacy, reason } =
+    const { sender, receiver, patient, medication, pharmacy, reason, status } =
       req.body;
 
     try {
@@ -134,6 +134,7 @@ const taskController = {
           medication,
           pharmacy,
           reason,
+          status,
         });
 
         res.status(200).json({ id: req.params.id });

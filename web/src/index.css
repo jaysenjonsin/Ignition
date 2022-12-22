@@ -394,6 +394,10 @@ p {
   cursor: pointer;
 }
 
+.approveTask:hover {
+  cursor: pointer;
+}
+
 /*  Details */
 
 .detailsCard {

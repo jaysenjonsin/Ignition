@@ -7,10 +7,11 @@ import { setSelectedTask } from '../features/tasks/taskSlice';
 const Task = ({ task }) => {
   const dispatch = useDispatch();
   const { selectedTask } = useSelector((state) => state.tasks);
-
+  const { user } = useSelector((state) => state.auth);
   const handleDivClick = (e) => {
     // Dispatch the action to set selectedTask to task
     dispatch(setSelectedTask(task));
+    console.log('SELECTED TASK ==>', selectedTask);
   };
 
   const handleDeleteClick = (e) => {
@@ -44,12 +45,27 @@ const Task = ({ task }) => {
       })}
       <br />
       Rx request for {task?.patient}
+      {/* {user?.role === 'MD' ? (
+        <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
+          <img src={deleteButton} />
+        </div>
+      ) : (
+        ''
+      )} */}
       <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
         <img
           src={deleteButton}
           alt='delete button'
           onClick={handleDeleteClick}
         />
+        {user?.role === 'MD' ? (
+          <div className='approveTask' style={{ marginLeft: 'auto' }}>
+            {' '}
+            ✓{' '}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
