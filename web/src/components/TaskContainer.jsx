@@ -40,6 +40,7 @@ const TaskContainer = () => {
               color: '#363636',
               paddingLeft: '2.1em',
               paddingTop: '.5em',
+              paddingBottom: '10px',
             }}
           >
             Recent Tasks

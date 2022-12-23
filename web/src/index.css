@@ -236,8 +236,12 @@ a {
 /* <nav /> */
 .navbar {
   width: 5rem;
-  /* header takes 6.5% */
-  height: 93.5vh;
+  margin-top: auto;
+  /* header takes 6.4%, found through trial and error. we want navbar to have height proportional to viewheight */
+  height: 93.6vh;
+  /*Header is 3.3 rem!!*/
+  margin-top: 3.3rem;
+
   /*navbar stays in same place no matter where user scrolls on screen.. this also prevents main content from being put underneath it*/
   position: fixed;
   background-color: var(--gray);
@@ -280,8 +284,12 @@ a {
 }
 
 .header {
-  height: 6.5%;
+  /*don't use height next time, better practice to just adjust margin or padding*/
+  height: 3.3rem;
+  padding: 0;
   background-color: var(--white);
+  position: fixed;
+  width: 100%;
 }
 
 .header img:hover {
@@ -375,11 +383,12 @@ p {
 
 .taskContainer {
   border-right: 1px solid #babfc3;
+  width: 100%;
 }
 
 .tasks {
   /* padding: 20px 20px 20px 32px; */
-  padding: 10px 0;
+  /* padding: 10px 0; */
 }
 
 .task {
@@ -411,6 +420,7 @@ p {
   font-weight: 500;
   color: #202223;
   align-items: center;
+  margin-top: 0.5em;
 }
 
 .detailsCard img {

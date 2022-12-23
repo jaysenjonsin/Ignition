@@ -13,11 +13,11 @@ const Details = ({ tasks }) => {
         <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>Details</h1>
         <div className='detailsContent'>
           <h2>Patient</h2>
-          <div className='detailsCard' style={{ alignItems: 'center' }}>
+          <div className='detailsCard'>
             <img src={avatar} alt='avatar' />
             {tasks.length === 0 ? '' : selectedTask?.patient}
           </div>
-          <h2 style={{ paddingTop: '.5em' }}>Medication</h2>
+          <h2 style={{ paddingTop: '2em' }}>Medication</h2>
           <div className='detailsCard'>
             <img src={medication} alt='medication' />
             {tasks.length === 0 ? (
@@ -36,7 +36,7 @@ const Details = ({ tasks }) => {
               </>
             )}
           </div>
-          <h2 style={{ paddingTop: '.5em' }}>Sent to</h2>
+          <h2 style={{ paddingTop: '2em' }}>Sent to</h2>
           <div style={{ display: 'flex' }}>
             <div className='detailsCard'>
               <img src={pharmacy} alt='pharmacy' />
@@ -54,7 +54,7 @@ const Details = ({ tasks }) => {
               ) : (
                 <Link
                   className='btn'
-                  style={{ marginLeft: '100px' }}
+                  style={{ marginLeft: '100px', marginTop: '2.4em' }}
                   to='/taskUpdate'
                 >
                   Edit
