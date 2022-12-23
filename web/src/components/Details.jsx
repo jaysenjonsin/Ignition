@@ -88,14 +88,18 @@ const Details = ({ tasks }) => {
                 <Link
                   to='/taskFinalize'
                   className='btn'
-                  style={{ marginLeft: '1rem' }}
+                  style={{ marginLeft: '1rem', backgroundColor: '#127CFC' }}
                 >
                   Edit or Deny
                 </Link>
               ) : (
                 <Link
                   className='btn'
-                  style={{ marginLeft: '100px', marginTop: '2.4em' }}
+                  style={{
+                    marginLeft: '100px',
+                    marginTop: '2.4em',
+                    backgroundColor: '#127CFC',
+                  }}
                   to='/taskUpdate'
                 >
                   Edit
