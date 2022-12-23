@@ -11,7 +11,6 @@ const Header = () => {
 
   const { user } = useSelector((state) => state.auth);
   const onLogout = () => {
-    localStorage.removeItem('user'); //this should be handled in logout, but there is bug where if we refresh page after logging in, it logs you back in because user wasn't removed from local storage
     dispatch(logout());
     dispatch(reset());
 
