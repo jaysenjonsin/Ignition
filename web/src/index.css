@@ -415,7 +415,8 @@ p {
 
 .detailsCard img {
   height: fit-content;
-  width: 4rem;
+  max-height: 4rem;
+  max-width: 4rem;
 }
 
 .detailsContent {
