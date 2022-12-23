@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import medication from '../images/medication.png';
 import pharmacy from '../images/pharmacy.png';
+import pendingTask from '../images/pendingTask.png';
+import deniedTask from '../images/deniedTask.png';
+import approvedTask from '../images/approvedTask.png';
 // import { setSelectedTask } from '../features/tasks/taskSlice';
 const Details = ({ tasks }) => {
   const { user, avatar } = useSelector((state) => state.auth);
@@ -10,7 +13,44 @@ const Details = ({ tasks }) => {
   return (
     <section className='details'>
       <div className='detailsContainer'>
-        <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>Details</h1>
+        <h1 style={{ color: '#363636', fontSize: '1.5rem' }}>
+          Details{' '}
+          {!selectedTask ? (
+            ''
+          ) : (
+            <>
+              <span
+                style={{
+                  position: 'absolute',
+                  color: '#848484',
+                  fontSize: '1rem',
+                  fontWeight: '400',
+                  paddingLeft: '15em',
+                  marginTop: '-.2rem',
+                  // verticalAlign: 'middle',
+                }}
+              >
+                {selectedTask?.status}
+                <img
+                  src={
+                    selectedTask?.status === 'pending'
+                      ? pendingTask
+                      : selectedTask?.status === 'denied'
+                      ? deniedTask
+                      : approvedTask
+                  }
+                  //note: setting image position to absolute allows me to use margin top to center the image with the text!!! will not work unless position is absolute
+                  style={{
+                    width: '2rem',
+                    position: 'absolute',
+                    paddingLeft: '.5em',
+                  }}
+                  alt='status'
+                />
+              </span>
+            </>
+          )}
+        </h1>
         <div className='detailsContent'>
           <h2>Patient</h2>
           <div className='detailsCard'>
@@ -26,6 +66,7 @@ const Details = ({ tasks }) => {
               <>
                 {selectedTask?.medication}
                 <br />
+                {/*if we didn't do this extra selectedTask check, then our patient card would always say -Request from ''... we only want it to say that if we have a task selected */}
                 {selectedTask === null
                   ? ''
                   : '  -Request from: ' + selectedTask?.sender}
