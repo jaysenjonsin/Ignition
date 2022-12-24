@@ -26,7 +26,7 @@ const TaskSuccess = () => {
         >
           <div
             className='taskSuccessContainer'
-            style={{ marginTop: '3rem' }}
+            style={{ marginTop: '4rem' }}
             // style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}
           >
             <div

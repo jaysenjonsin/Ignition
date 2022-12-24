@@ -51,7 +51,7 @@ const taskController = {
 
   getTasks: async (req, res, next) => {
     try {
-      //instead of just getting the task itself (remember, task doesn't have the actual user's name, it only has the id), this is replacing the ._id with the name value in the user model!!!!
+      //instead of just getting the task itself (remember, task doesn't have the actual user's name, it only has the id), this is replacing the sender/receiver/patient with the actual data from the user model.
       const tasks = await Task.find({
         $or: [
           { sender: req.user.id },
@@ -64,6 +64,7 @@ const taskController = {
         .populate('patient');
 
       // console.log('tasks===>', tasks);
+      //we can now format each task to only include what we want, instead of including every detail about the sender, receiver, and patient. ex: instad of sender being the entire sender's data, we are only setting it here to the senders name (task.sender.name). so when user makes get requests for their tasks, they only see the name of who sent it instead of all the sender's info
       const formattedTasks = tasks.map((task) => {
         return {
           _id: task._id,
@@ -175,61 +176,3 @@ const taskController = {
 
 module.exports = taskController;
 
-//what is sent in getTasks:
-
-// [
-//   {
-//       "_id": "639e6aaa520f3517bace23ea",
-//       "sender": "639e6a24c3627535e08bd5de",
-//       "receiver": "639e69f8a21c9b603a5e0b32",
-//       "patient": "639e69f8a21c9b603a5e0b32",
-//       "medication": "meds",
-//       "pharmacy": "CVS",
-//       "createdAt": "2022-12-18T01:19:38.964Z",
-//       "updatedAt": "2022-12-18T01:19:38.964Z",
-//       "__v": 0
-//   },
-// {
-//         "_id": "639e6aaa520f3517bace23ea",
-//         "sender": "639e6a24c3627535e08bd5de",
-//         "receiver": "639e69f8a21c9b603a5e0b32",
-//         "patient": "639e69f8a21c9b603a5e0b32",
-//         "medication": "meds",
-//         "pharmacy": "CVS",
-//         "createdAt": "2022-12-18T01:19:38.964Z",
-//         "updatedAt": "2022-12-18T01:19:38.964Z",
-//         "__v": 0
-//     }
-// ]
-
-//test documents:
-
-// 1:
-//{
-//     "_id": "6392f08acb342622cf7abfb2",
-//     "role": "tester",
-//     "name": "tester",
-//     "email": "tester",
-//     "username": "tester",
-//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTJmMDhhY2IzNDI2MjJjZjdhYmZiMiIsImlhdCI6MTY3MDU3NDIxOCwiZXhwIjoxNjczMTY2MjE4fQ.Ks-JUU3zKyTS-AUvOzeA7xs_a8Fc1DgXrIgHLqFMusI"
-// }
-
-//2:
-//{
-//   "_id": "6392f0b29f31cc6b9c7a3305",
-//   "role": "tester2",
-//   "name": "tester2",
-//   "email": "tester2",
-//   "username": "tester2",
-//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTJmMGIyOWYzMWNjNmI5YzdhMzMwNSIsImlhdCI6MTY3MDU3NDI1OCwiZXhwIjoxNjczMTY2MjU4fQ._4OCuHvqZnOaNxAnlF3RbqUZMPFhUqG_DGy1tt5-k_M"
-// }
-
-//3:
-//{
-//   "_id": "6392f3a9406dad264d9229ad",
-//   "role": "tester3",
-//   "name": "tester3",
-//   "email": "tester3",
-//   "username": "tester3",
-//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTJmM2E5NDA2ZGFkMjY0ZDkyMjlhZCIsImlhdCI6MTY3MDU3NTAxNywiZXhwIjoxNjczMTY3MDE3fQ.P8IQF5cH7EZl4vhwW3dEJTHH2N6kLF9qeYiozP_YNXo"
-// }

@@ -26,7 +26,7 @@ const TaskDenied = () => {
         >
           <div
             className='taskSuccessContainer'
-            style={{ marginTop: '3rem' }}
+            style={{ marginTop: '5rem' }}
             // style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}
           >
             <div

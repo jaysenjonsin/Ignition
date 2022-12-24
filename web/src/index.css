@@ -290,6 +290,7 @@ a {
   background-color: var(--white);
   position: fixed;
   width: 100%;
+  border: 1px solid whitesmoke;
 }
 
 .header img:hover {
@@ -394,6 +395,8 @@ p {
 .task {
   display: flex;
   border: 1px solid #babfc3;
+  border-collapse: collapse;
+  border-spacing: 0;
   border-right: none;
   padding: 1em 0;
   line-height: 1.9em;
