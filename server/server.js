@@ -16,14 +16,13 @@ app.use('/api/users', userRouter);
 app.use('/api/tasks', taskRouter);
 
 //if prod, static serve bundle folder
-if (process.env.NODE_ENV === 'production') {
-  app.use('/dist', express.static(path.join(__dirname, '../dist')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use('/dist', express.static(path.join(__dirname, '../dist')));
+// }
 
-app.get('/'),
-  (_, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../web/public/index.html'));
-  };
+// app.get('/', (_, res) => {
+//   res.status(200).sendFile(path.join(__dirname, '../web/public/index.html'));
+// });
 
 //catch all route handler
 app.use((_, res) => res.status(404).send('page not found'));
@@ -36,6 +35,6 @@ app.use((err, _, res, __) => {
   });
 });
 
-app.listen(port, (_, __) => {
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

@@ -1,3 +1,4 @@
+const { update } = require('../models/taskModel');
 const Task = require('../models/taskModel');
 const User = require('../models/userModel');
 
@@ -93,6 +94,8 @@ const taskController = {
       req.body;
 
     try {
+      // const task = await Task.findById(req.params.id);
+      //finding the task, then populating the relevant data.
       const task = await Task.findById(req.params.id);
 
       if (!task) {
@@ -127,18 +130,34 @@ const taskController = {
         task.sender.toString() == req.user.id ||
         task.receiver.toString() == req.user.id
       ) {
-        const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
-          sender,
-          //front end is sending the name. remember, when creating task, we use their ID. so convert frontends input back to the id.
-          receiver: receiverExists[0],
-          patient: patientExists[0],
+        const updatedTask = await Task.findByIdAndUpdate(
+          req.params.id,
+          {
+            sender,
+            //front end is sending the name. remember, when creating task, we use their ID. so convert frontends input back to the id.
+            receiver: receiverExists[0],
+            patient: patientExists[0],
+            medication,
+            pharmacy,
+            reason,
+            status,
+          },
+          { new: true }
+        )
+          .populate('sender')
+          .populate('receiver')
+          .populate('patient'); ////make sure to put new true so const updatedTask is the updated task, not the old one.
+        res.status(200).json({
+          id: req.params.id,
+          sender: updatedTask.sender.name,
+          receiver: updatedTask.receiver.name,
+          patient: updatedTask.patient.name,
           medication,
           pharmacy,
           reason,
           status,
+          createdAt: updatedTask.createdAt,
         });
-
-        res.status(200).json({ id: req.params.id });
       } else {
         res.status(401);
         throw new Error('user not authorized to update task');
@@ -175,4 +194,3 @@ const taskController = {
 };
 
 module.exports = taskController;
-

@@ -38,7 +38,7 @@ const Task = ({ task }) => {
 
   const approveRequest = (e) => {
     e.stopPropagation();
-    window.location.reload();
+    // window.location.reload();
     dispatch(setSelectedTask(task));
     dispatch(
       updateTask({
