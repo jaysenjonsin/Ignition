@@ -7,10 +7,6 @@
   font-family: 'inter';
 }
 
-/* body {
-  overflow: hidden;
-} */
-
 :root {
   --main-button-color: #ff7a00;
   --white: #ffffff;
@@ -36,7 +32,6 @@ body::-webkit-scrollbar-track {
 /*    Login.jsx    */
 
 .loginContainer {
-  /* background-image: url('./images/marek-piwnicki-DgdJ_0us5SE-unsplash.jpg'); */
   background-image: url('./images/ignitionDarkerBackground.jpeg');
   /*background will auto repeat to fill size if we don't do this*/
   background-repeat: no-repeat;
@@ -84,7 +79,6 @@ body::-webkit-scrollbar-track {
 .form-group textarea,
 .form-group select {
   background: #ffffff;
-  /* background-color: red; */
   width: 100%;
   padding: 16px;
   border: 1px solid #e6e6e6;
@@ -95,19 +89,12 @@ body::-webkit-scrollbar-track {
   font-style: normal;
 }
 
-/* .form-group label {
-  text-align: left;
-  display: block;
-  margin: 0 0 5px 3px;
-} */
-
 .btn {
   margin-top: 1.5rem;
   text-decoration: none;
   /*centering the button --> same as margin: 0 auto*/
   margin-inline: auto;
   padding: 16px;
-  /* border: 1px solid #000; */
   border-radius: 8px;
   background: var(--main-button-color);
   color: var(--white);
@@ -123,15 +110,6 @@ body::-webkit-scrollbar-track {
   backdrop-filter: blur(11px);
   /* Note: backdrop-filter has minimal browser support */
 }
-
-/* .btn svg {
-  margin-right: 8px;
-} */
-
-/* .btn-reverse {
-  background: #fff;
-  color: #000;
-} */
 
 .btn-block {
   width: 75%;
@@ -199,7 +177,6 @@ a {
   font-size: 3rem;
   /*unintended, but this is moving everything down --> best to avoid heights */
   height: 23vh;
-  /* border: solid red; */
   position: relative;
   font-family: 'Inter';
   font-style: normal;
@@ -221,8 +198,6 @@ a {
   background-size: cover;
   background-position: center -20rem;
   height: 100vh;
-  /* this is making everything darker, not just the picture
-  filter:brightness(80%); */
 }
 
 /*main dashboard content pushed right to account for the navbar*/
@@ -250,8 +225,6 @@ a {
 /* <ul /> */
 .navbar-nav {
   list-style: none;
-  /* padding: 0;
-   margin:0; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -335,7 +308,7 @@ p {
   line-height: 22px;
 }
 
-/* Spinner.jsx  */
+/* Spinner.jsx --> not working */
 
 /* .lds-ring {
   display: inline-block;
@@ -387,10 +360,10 @@ p {
   width: 100%;
 }
 
-.tasks {
-  /* padding: 20px 20px 20px 32px; */
-  /* padding: 10px 0; */
-}
+/* .tasks {
+   padding: 20px 20px 20px 32px; 
+  padding: 10px 0; 
+} */
 
 .task {
   display: flex;
@@ -441,5 +414,4 @@ p {
 .detailsContent h2 {
   color: #363636;
   font-size: 1.1rem;
-  /* padding-left: 0.8rem; */
 }

@@ -15,8 +15,6 @@ const taskController = {
 
       //confirm receiver exists in DB --> model.find returns AN ARRAY. we only want the first user that appears, so grab the 0th element
       const receiverExists = await User.find({ name: receiver });
-      // console.log('RECEIVER ===>', receiverExists[0]); //<-- to send id back, make sure to do receiverExists[0]
-      // console.log('SENDER ==>', req.user);
       //for some reason in post man if you put a wrong receiver it isnt throwing correct error --> same for patient
       if (!receiverExists[0]) {
         res.status(400);
@@ -29,10 +27,8 @@ const taskController = {
         res.status(400);
         throw new Error('patient does not exist.');
       }
-      // const senderData = await User.findById(req.user.id, { name: 1 });
       const task = await Task.create({
         //have access to req.user through protect middleware
-        //pasted waht is being sent back on the bottom
         sender: req.user.id,
         //make sure request sends id of receiver
         receiver: receiverExists[0].id,
@@ -64,7 +60,6 @@ const taskController = {
         .populate('receiver')
         .populate('patient');
 
-      // console.log('tasks===>', tasks);
       //we can now format each task to only include what we want, instead of including every detail about the sender, receiver, and patient. ex: instad of sender being the entire sender's data, we are only setting it here to the senders name (task.sender.name). so when user makes get requests for their tasks, they only see the name of who sent it instead of all the sender's info
       const formattedTasks = tasks.map((task) => {
         return {
@@ -94,8 +89,6 @@ const taskController = {
       req.body;
 
     try {
-      // const task = await Task.findById(req.params.id);
-      //finding the task, then populating the relevant data.
       const task = await Task.findById(req.params.id);
 
       if (!task) {
@@ -121,11 +114,8 @@ const taskController = {
         throw new Error('patient does not exist');
       }
 
-      //ENSURE USER IS AUTHORIZED: only receiver and sender can update task --> not sure if necessary since this goes through protect middleware
-      // console.log('task.sender --> ', task.sender.toString());
-      // console.log('task.receiver --> ', task.receiver.toString());
-      // console.log('req.user.id --> ', req.user.id);
       if (
+        //ENSURE USER IS AUTHORIZED: only receiver and sender can update task
         //task.sender and receiver are numbers, so convert to string
         task.sender.toString() == req.user.id ||
         task.receiver.toString() == req.user.id

@@ -10,7 +10,7 @@ const protect = async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
-      //token is stored like: Bearer <token>
+      //token is sent back like: Bearer <token>
       token = req.headers.authorization.split(' ')[1];
 
       //verifying token. we can now get our payload from decoded

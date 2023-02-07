@@ -17,7 +17,7 @@ const authService = {
   },
 
   login: async (userData) => {
-    //rememeber, login url is api/users/login. make sure to hit currect endpoint
+    //login endpoint: /api/users/login
     const response = await axios.post(API_URL + 'login', userData);
 
     if (response.data) {
@@ -32,6 +32,6 @@ const authService = {
   },
 };
 
-//was initially creating each function and then putting them in authService object like this: const authService = { register }; --> instead just putting all functions as methods on the object
+
 
 export default authService;

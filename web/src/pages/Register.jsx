@@ -21,7 +21,6 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //extracting state from auth.state using useSelector
   const { user, isError, isSuccess, /*isLoading,*/ message } = useSelector(
     (state) => state.auth
   );
@@ -62,7 +61,6 @@ const Register = () => {
       if (password !== password2) {
         toast.error('Passwords do not match.');
       } else {
-        //make sure to send all data needed on the dispatch. initially wrote only name, email, password and kept getting error 'add all required fields'
         const userInfo = {
           role,
           name,
@@ -70,7 +68,6 @@ const Register = () => {
           username,
           password,
         };
-        //note: if user does not input all required fields: toast error will show 'please add all required fields'. this logic is set up in the backend.
         dispatch(register(userInfo));
       }
     } else {
@@ -95,7 +92,7 @@ const Register = () => {
           <form onSubmit={onSubmit}>
             <div className='form-group'>
               <input
-                //CHANGE TO DROPDOWN MENU IF THERE IS TIME
+                //change to drop down menu
                 type='text'
                 className='form-control'
                 id='role'
@@ -151,7 +148,6 @@ const Register = () => {
             </div>
             <div className='form-group'>
               <input
-                //notice type called password!
                 type='password'
                 className='form-control'
                 id='password2'
@@ -162,7 +158,6 @@ const Register = () => {
               />
             </div>
             <div className='form-group'>
-              {/*adding two classes to our button */}
               <button type='submit' className='btn btn-block'>
                 Sign up
               </button>

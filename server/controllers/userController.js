@@ -2,9 +2,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const userController = {
-  //make sure all fields filled, user doesnt exist already, hash password, generate token
   registerUser: async (req, res, next) => {
-    //this will say 'cannot destrucure role because it is undefined' if we do not use app.json() and app.urlencoded() in our server.js
+    //this will say 'cannot destrucure role because it is undefined' if we do not use app.use(express.json()) and app.urlencoded() in our server.js
     const { role, name, email, username, password } = req.body;
     try {
       if (!role || !name || !email || !username || !password) {
@@ -29,16 +28,14 @@ const userController = {
         password: hashedPassword,
       });
 
-      // not sure if needed? : req.user = user -> don't need because this is the last func in middleware chain, don't need to persist req.user here
 
       //sending this to frontend to use later
       res.status(201).json({
-        _id: user.id, // <-- in mongo, can access _id with .id. so we couldv'e also said _id: user._id, doesn't matter here
+        _id: user.id, // <-- in mongo, can access _id with .id. 
         role: user.role,
         name: user.name,
         email: user.email,
         username: user.username,
-        //not sure why but using this.generateToken doesn't work
         token: userController.generateToken(user._id),
       });
     } catch (err) {
@@ -57,8 +54,6 @@ const userController = {
       }
       const user = await User.findOne({ username });
       console.log(password);
-      // console.log('crypt password', user.password);
-      //compare req.body.password and password from db
       //dont forget to await the hash
       if (user && await bcrypt.compare(password, user.password)) {
         res.status(200).json({
@@ -83,7 +78,6 @@ const userController = {
     res.status(200).json(req.user);
   },
 
-  //a generalized update function that updates. can update all information in one func
   updateUser: async (req, res, next) => {
     const { role, name, email, username, password } = req.body;
     try {

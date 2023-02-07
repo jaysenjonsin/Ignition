@@ -22,15 +22,12 @@ const Task = ({ task }) => {
   };
 
   const handleDivClick = (e) => {
-    // Dispatch the action to set selectedTask to task
     dispatch(setSelectedTask(task));
-    console.log('SELECTED TASK ==>', selectedTask);
   };
 
   const handleDeleteClick = (e) => {
     //stop propagation prevents event from bubbling up to the parent div element
     e.stopPropagation();
-    // Dispatch the action to delete the task and set selectedTask to null
     dispatch(deleteTask(task._id));
     //if we didn't have this, then Details would still show details of the deleted task even after deleting
     dispatch(setSelectedTask(null));
@@ -49,23 +46,6 @@ const Task = ({ task }) => {
         1: task._id,
       })
     );
-    // e.preventDefault();
-    // try {
-    //   // window.location.reload();
-    //   dispatch(setSelectedTask(task));
-    //   await dispatch(
-    //     updateTask({
-    //       0: {
-    //         ...formData,
-    //         status: 'approved',
-    //       },
-    //       1: selectedTask._id,
-    //     })
-    //   );
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    // console.log('FORM DATA -->', formData);
   };
 
   return (
@@ -96,13 +76,6 @@ const Task = ({ task }) => {
       })}
       <br />
       Rx request for {task?.patient}
-      {/* {user?.role === 'MD' ? (
-        <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
-          <img src={deleteButton} />
-        </div>
-      ) : (
-        ''
-      )} */}
       <div style={{ marginLeft: 'auto', paddingRight: '1.5em' }}>
         <img
           src={deleteButton}
@@ -126,13 +99,3 @@ const Task = ({ task }) => {
 };
 
 export default Task;
-
-/*
-constainer display: flex
-  ul
-   li image
-   li  Task  ->date, patient
-   li  x
-
-  /ul
- */

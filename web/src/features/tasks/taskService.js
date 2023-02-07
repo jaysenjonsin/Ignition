@@ -3,7 +3,7 @@ const API_URL = '/api/tasks/';
 
 const taskService = {
   createTask: async (taskData, token) => {
-    //we receive the token as just the token itself. we want to send in the format that it is in the header, so use template literal
+    //we receive the token as just the token itself. we want to send in the format that the backend expects, so use template literal for 'Bearer ${token}'
 
     //if we do not send this config, we cannot access this route. remember, the createTask route first goes through protect route, which checks if user has token
     const config = {
@@ -38,7 +38,6 @@ const taskService = {
       taskData[0],
       config
     );
-    // console.log('TASK DATA 1 ===>', taskData[1]);
     return response.data;
   },
 

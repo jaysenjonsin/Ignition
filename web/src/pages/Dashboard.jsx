@@ -18,24 +18,18 @@ const Dashboard = () => {
   }, [user, navigate]);
   return (
     <>
-      {/* <div style={{ height: '100vh', overflow: 'hidden' }}> */}
       <div
         className='dashboardContainer'
-        // style={{ height: 'auto', overflow: 'hidden' }}
       >
         <Header />
         <Navbar />
         <section
           className='main'
-          // style={{ height: '1000px', overflow: 'auto' }}
         >
           <TaskGenerator />
-          {/* <div style={{ height: '1000px', overflow: 'scroll' }}> */}
           <TaskContainer style={{ overflow: 'auto' }} />
-          {/* </div> */}
         </section>
       </div>
-      {/* </div> */}
     </>
   );
 };
