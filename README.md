@@ -11,7 +11,7 @@
 ## **Table of Contents**
 
 - [Description](https://github.com/jaysenjonsin/Ignition#Description)
-- [Key Features](https://github.com/jaysenjonsin/Ignition#Description)
+- [Key Features](https://github.com/jaysenjonsin/Ignition#Key-Features)
 - [Built With](https://github.com/jaysenjonsin/Ignition#Built-With)
 - [Installation](https://github.com/jaysenjonsin/Ignition#Installation)
 - [How to Contribute](https://github.com/jaysenjonsin/Ignition#How-to-Contribute)
