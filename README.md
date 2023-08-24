@@ -14,7 +14,7 @@
 - [Key Features](https://github.com/jaysenjonsin/Ignition#Description)
 - [Built With](https://github.com/jaysenjonsin/Ignition#Built-With)
 - [Installation](https://github.com/jaysenjonsin/Ignition#Installation)
-- [How to Contribute](https://github.com/oslabs-beta/Scribe-for-GraphQL#How-to-Contribute)
+- [How to Contribute](https://github.com/jaysenjonsin/Ignition#How-to-Contribute)
 
 ## **Description**
 
